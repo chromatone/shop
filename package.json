@@ -1,0 +1,38 @@
+{
+	"name": "shop.chromatone.center",
+	"private": true,
+	"version": "0.0.1",
+	"description": "Shop for Chromatone physical and digital goods",
+	"type": "module",
+	"scripts": {
+		"dev": "vitepress dev --port 4224",
+		"build": "vitepress build",
+		"serve": "vitepress serve",
+		"deploy": "sh deploy.sh"
+	},
+	"engines": {
+		"node": "20.x"
+	},
+	"packageManager": "pnpm@8.7.4",
+	"keywords": [
+		"shop",
+		"directus",
+		"vitepress"
+	],
+	"author": "davay42",
+	"license": "MIT",
+	"dependencies": {
+		"@unocss/reset": "0.55.7",
+		"@vueuse/core": "10.4.1",
+		"vue": "3.3.4"
+	},
+	"devDependencies": {
+		"@directus/sdk": "10.3.5",
+		"@unocss/extractor-pug": "0.55.7",
+		"@vue/language-plugin-pug": "^1.8.10",
+		"image-downloader": "4.3.0",
+		"pug": "3.0.2",
+		"unocss": "0.55.7",
+		"vitepress": "1.0.0-rc.10"
+	}
+}
