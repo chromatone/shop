@@ -27,12 +27,13 @@
 		"vue": "3.3.4"
 	},
 	"devDependencies": {
-		"@directus/sdk": "10.3.5",
+		"@directus/sdk": "11.0.3",
 		"@unocss/extractor-pug": "0.55.7",
 		"@vue/language-plugin-pug": "^1.8.10",
 		"image-downloader": "4.3.0",
 		"pug": "3.0.2",
 		"unocss": "0.55.7",
+		"unplugin-vue-components": "0.25.2",
 		"vitepress": "1.0.0-rc.10"
 	}
 }
