@@ -37,8 +37,8 @@ export default {
         ]
       })
 
-    await downloadCovers(products)
-    await downloadCovers(categories)
+    await downloadCovers(products, 'products')
+    await downloadCovers(categories, 'categories')
 
     return {
       products,
@@ -48,10 +48,10 @@ export default {
 }
 
 
-async function downloadCovers(records) {
+async function downloadCovers(records, folder = '') {
 
   const dirname = path.dirname(fileURLToPath(import.meta.url));
-  let dest = path.resolve(dirname, '../shop/public/cover/')
+  let dest = path.resolve(dirname, '../shop/public/', folder)
   if (!fs.existsSync(dest)) {
     fs.mkdirSync(dest, { recursive: true });
   }

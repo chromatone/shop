@@ -3,10 +3,11 @@ const { params, frontmatter: f } = useData()
 </script>
 
 <template lang='pug'>
-.flex.flex-col  
-  img(:src="`/cover/${f.slug}.webp`")
+.flex.flex-col.items-center.max-w-150.gap-8
+
   h2.text-xl {{ f.title }}
   p {{ f.description }}
-  .font-bold {{ f.price }}
+  .font-bold ${{ f.price }}
+  img(:src="`/products/${f.slug}.webp`")
   slot
 </template>
