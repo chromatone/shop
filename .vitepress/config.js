@@ -18,7 +18,7 @@ const meta = {
   description: "Stickers, posters and printable goods for Chromatone learning, teaching and practice",
   site: "shop.chromatone.center",
   url: "https://shop.chromatone.center/",
-  repo: "https://github.com/chromatone/shop",
+  repo: "https://github.com/chromatone/shop.chromatone.center",
   locale: "en",
   icon: "shop.svg",
   logo: "shop.svg",
@@ -33,6 +33,7 @@ const meta = {
 
 export default defineConfig({
   srcDir: 'shop',
+  outDir: 'dist',
   title: meta.title,
   description: meta.description,
   lastUpdated: false,
@@ -72,7 +73,7 @@ export default defineConfig({
     if (pageData.frontmatter?.dynamic) {
       pageData.title = pageData.params?.title
       pageData.description = pageData.params?.description
-      pageData.frontmatter = { ...pageData.frontmatter, ...pageData.params, cover: pageData.params?.cover ? `https://db.chromatone.center/assets/${pageData.params?.cover}?fit=cover&format=webp&width=1000` : '' }
+      pageData.frontmatter = { ...pageData.frontmatter, ...pageData.params }
     }
   },
   transformHead({ pageData }) {
@@ -128,6 +129,7 @@ export default defineConfig({
         transformers: [transformerDirectives()],
         presets: [
           presetIcons({
+            cdn: 'https://esm.sh/',
             scale: 1.2,
             extraProperties: {
               "vertical-align": "middle",

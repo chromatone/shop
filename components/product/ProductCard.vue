@@ -14,7 +14,7 @@ a.overflow-hidden.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dar
   .p-0.min-w-50.relative(style="flex: 0 0 ")
     img(
       style="margin:0"
-      :src="`https://db.chromatone.center/assets/${props.cover || props.poster}?fit=cover&width=300&height=300&format=webp`")
+      :src="`/cover/${slug}.webp`")
   .flex.flex-col.p-4.gap-2(style="flex: 1 1 100px")
     .text-2xl.font-bold.flex.items-center.gap-2 {{ title }}
     .text-md.leading-normal {{ description }}

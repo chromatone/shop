@@ -41,7 +41,7 @@ export default {
     await downloadCovers(categories)
 
     return {
-      // products,
+      products,
       categories
     }
   }
@@ -51,17 +51,17 @@ export default {
 async function downloadCovers(records) {
 
   const dirname = path.dirname(fileURLToPath(import.meta.url));
-  let dest = path.resolve(dirname, '../public/cover/')
+  let dest = path.resolve(dirname, '../shop/public/cover/')
   if (!fs.existsSync(dest)) {
     fs.mkdirSync(dest, { recursive: true });
   }
   const urls = []
 
   for (let r of records) {
-    let filePath = path.resolve(dest, `${r.title.toLowerCase().split(' ').join('-')}.webp`)
+    let filePath = path.resolve(dest, `${r.slug}.webp`)
     if (fs.existsSync(filePath)) continue
     let url = `https://db.chromatone.center/assets/${r.cover}?quality=70&width=1000&format=webp&download`
-    console.log('downloading file:', r.title.toLowerCase().split(' ').join('-') + '.webp')
+    console.log('downloading file:', r.slug + '.webp')
     urls.push({ url, dest: filePath })
   }
 

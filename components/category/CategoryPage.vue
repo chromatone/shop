@@ -4,7 +4,7 @@ const { params, frontmatter: f } = useData()
 
 <template lang='pug'>
 .flex.flex-col
-  img(:src="f?.cover")
+  img(:src="`/cover/${f?.slug}.webp`")
   h2.text-xl {{ f?.title }}
   p {{ f?.description }}
   slot

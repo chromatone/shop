@@ -1,13 +1,33 @@
 <script setup>
-import DefaultTheme from 'vitepress/theme'
-const { Layout } = DefaultTheme
+import '@unocss/reset/tailwind.css'
+import 'uno.css'
+const { isDark } = useData()
+
+const route = useRoute()
 </script>
 
 <template lang="pug">
-Layout
-  template(#layout-bottom)
-    .flex.items-center.text-center.min-h-30
-      .p-2.max-w-45ch.mx-auto
-        a(title="Visual Music Language", href="https://chromatone.center", target="_blank") Chromatone
+.flex.flex-col.bg-light-500.dark-bg-dark-100.dark-text-light-500.min-h-100dvh
+  nav.flex.gap-4
+    a.p-2.text-lg.font-bold(href="/") Chromatone shop
+    .flex-1
+    .p-4(@click="isDark = !isDark")
+      .i-la-sun(v-if="!isDark")
+      .i-la-moon(v-else)
+  transition(name="fade")
+    content(:key="route.path")
 </template>
 
+<style>
+.fade-enter-active {
+  transition: all 0.5s ease;
+}
+
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-from {
+  opacity: 0;
+}
+</style>
