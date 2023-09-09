@@ -11,6 +11,8 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env:
+      VITE_CMS_KEY: ${{ secrets.VITE_CMS_KEY }}
 
     steps:
       - name: Checkout repo
