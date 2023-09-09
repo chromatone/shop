@@ -5,11 +5,17 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@stripe/stripe-js':
+    specifier: ^2.1.2
+    version: 2.1.2
   '@unocss/reset':
     specifier: 0.55.7
     version: 0.55.7
   '@vueuse/core':
     specifier: 10.4.1
+    version: 10.4.1(vue@3.3.4)
+  '@vueuse/math':
+    specifier: ^10.4.1
     version: 10.4.1(vue@3.3.4)
   vue:
     specifier: 3.3.4
@@ -553,6 +559,10 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /@stripe/stripe-js@2.1.2:
+    resolution: {integrity: sha512-xyB/oVoFBPLCVGRUGQphzMnfCVfWGqKLb2+v/sIJAwYlVMrS2uF4iyZHpE7Lg1DtDL5qsPxSTpUGs0kRtMdbRA==}
+    dev: false
+
   /@types/estree@1.0.1:
     resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
     dev: true
@@ -934,6 +944,16 @@ packages:
       - '@vue/composition-api'
       - vue
     dev: true
+
+  /@vueuse/math@10.4.1(vue@3.3.4):
+    resolution: {integrity: sha512-8XAssBPg6jQ9Z/oD4Yq+gkSjr/r2Sm7pyloWf7i8RQNXiXvf39N0rNZBufFXezKeDa2JmsuMR8JsqlIW7AnG/w==}
+    dependencies:
+      '@vueuse/shared': 10.4.1(vue@3.3.4)
+      vue-demi: 0.14.6(vue@3.3.4)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
 
   /@vueuse/metadata@10.4.1:
     resolution: {integrity: sha512-2Sc8X+iVzeuMGHr6O2j4gv/zxvQGGOYETYXEc41h0iZXIRnRbJZGmY/QP8dvzqUelf8vg0p/yEA5VpCEu+WpZg==}
