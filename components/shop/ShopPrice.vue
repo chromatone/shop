@@ -26,7 +26,7 @@ const route = useRoute()
   .shop-button.flex.items-center(
     style="flex: 0 0 140px;"
     v-if="stripe_id"
-    @click.prevent.stop="addToCart(title, {...props, path:route.path})") 
+    @click.prevent.stop="addToCart(title, {...props, id:props.stripe_id, path:route.path})") 
 
     shop-cart-icon.scale-120(:id="stripe_id")
     .cart-text Add to cart

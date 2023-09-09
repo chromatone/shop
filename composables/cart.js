@@ -85,15 +85,20 @@ export async function checkout() {
 		})
 	}
 
+	const request = {
+		lineItems,
+		mode: 'payment',
+		successUrl: 'https://chromatone.center/shop/success.html',
+		cancelUrl: 'https://chromatone.center/shop/cancel.html',
+		shippingAddressCollection: delivery.needed ? { allowedCountries: countries } : undefined
+	}
+
+	console.log(request)
+
 	try {
-		await stripe?.redirectToCheckout({
-			lineItems,
-			mode: 'payment',
-			successUrl: 'https://chromatone.center/shop/success.html',
-			cancelUrl: 'https://chromatone.center/shop/cancel.html',
-			shippingAddressCollection: delivery.needed ? { allowedCountries: countries } : undefined
-		})
+		await stripe?.redirectToCheckout(request)
 	} catch (e) {
-		alert('checkout failed')
+		console.log(e)
+		alert(`checkout failed, ${e}`)
 	}
 }
