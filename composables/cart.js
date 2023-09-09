@@ -7,7 +7,7 @@ import countries from './countries.json'
 import { data as ways } from '../db/delivery.data'
 
 
-const stripeKey = 'pk_test_51M1WfLBJnUXQERoc8kJxlKVjvlphOZDdPRGfnPdwhZn7BRztRTjHjgVCV6VYjWD64drtyVfSjy7J9VzDRXLb7YkS0056oBSnN9'
+const stripeKey = 'pk_live_51M1WfLBJnUXQERocrGtVUDvfIdzMmecoAClLVFLSi2VG2cNF2kS6bVsR4uUVtMYvusv4lkBMaDuOzgVJUuNMWndm00CVS3obG3'
 
 const MaxQuantity = 5
 
