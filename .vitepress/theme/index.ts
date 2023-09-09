@@ -1,6 +1,6 @@
 import '@unocss/reset/tailwind.css'
 import 'uno.css'
-import Layout from './MyLayout.vue'
+import Layout from '../../components/main/MainLayout.vue'
 
 import DefaultTheme from 'vitepress/theme'
 

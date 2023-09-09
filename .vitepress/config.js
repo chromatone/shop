@@ -1,6 +1,4 @@
 import { defineConfig } from "vitepress";
-
-
 import Unocss from "unocss/vite";
 import {
   transformerDirectives,
@@ -10,6 +8,10 @@ import {
 } from "unocss";
 import extractorPug from "@unocss/extractor-pug";
 import Components from 'unplugin-vue-components/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const meta = {
   title: "Chromatone shop",
@@ -30,12 +32,16 @@ const meta = {
 };
 
 export default defineConfig({
+  srcDir: 'shop',
   title: meta.title,
   description: meta.description,
   lastUpdated: false,
   titleTemplate: 'Chromatone Shop',
   lang: "en-US",
   cleanUrls: true,
+  sitemap: {
+    hostname: 'https://shop.chromatone.center'
+  },
   themeConfig: {
     logo: meta.logo,
     lastUpdated: true,
@@ -44,6 +50,7 @@ export default defineConfig({
     ],
     nav: [
       { text: 'Chromatone', link: 'https://chromatone.center' },
+      { text: 'Cart', link: '/cart/' },
     ],
   },
   head: [
@@ -86,9 +93,29 @@ export default defineConfig({
     ]
   },
   vite: {
+    resolve: {
+      alias: {
+        "#/": path.resolve(dirname, "../"),
+      },
+    },
     plugins: [
+      AutoImport({
+        include: [
+          /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+          /\.vue$/, /\.vue\?vue/, // .vue
+          /\.md$/, // .md
+        ],
+        imports: [
+          // presets
+          'vue',
+          'vitepress'
+        ],
+        dirs: [
+          './composables'
+        ]
+      }),
       Components({
-        dirs: ['.vitepress/components'],
+        dirs: ['../components'],
         extensions: ['vue'],
         directoryAsNamespace: true,
         collapseSamePrefixes: true,
@@ -111,5 +138,5 @@ export default defineConfig({
         extractors: [extractorSplit, extractorPug()],
       }),
     ],
-  },
+  }
 });

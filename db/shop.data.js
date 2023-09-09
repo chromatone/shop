@@ -3,8 +3,7 @@ import download from 'image-downloader'
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import fs from 'node:fs'
-
-import { useItems } from "./db"
+import { useItems } from '.';
 
 export default {
   async load() {
@@ -52,7 +51,7 @@ export default {
 async function downloadCovers(records) {
 
   const dirname = path.dirname(fileURLToPath(import.meta.url));
-  let dest = path.resolve(dirname, './public/cover/')
+  let dest = path.resolve(dirname, '../public/cover/')
   if (!fs.existsSync(dest)) {
     fs.mkdirSync(dest, { recursive: true });
   }
