@@ -1,6 +1,5 @@
 <script setup>
 import { cart } from '../../composables/cart'
-import { computed } from 'vue';
 
 const props = defineProps({
 	id: { type: String, default: null }

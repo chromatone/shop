@@ -3,9 +3,9 @@ import { cart, checkout, total, open, delivery, count } from '../../composables/
 </script>
 
 <template lang="pug">
-.flex.flex-col.tabular-nums.gap-1(v-if="cart && Object.keys(cart).length > 0")
+.flex.flex-col.tabular-nums.gap-1.max-w-150.sticky.bottom-0.bg-light-400.dark-bg-dark-200(v-if="cart && Object.keys(cart).length > 0")
 	.flex.justify-between
-		.text-lg.px-4.pt-1.pb-2 My shopping cart
+		.text-lg.px-4.py-2 My shopping cart
 	.overflow-y-scroll.max-h-60vh.overscroll-contain
 		table.text-left.m-0.mb-4.text-sm.md-text-lg.w-full
 			tr.text-md.sticky.top-0.z-20
@@ -18,7 +18,7 @@ import { cart, checkout, total, open, delivery, count } from '../../composables/
 					a.cursor-pointer.no-underline(:href="pos.path" @click="open = false") {{pos.title}}
 					.i-la-file-download.text-sm(
 						v-if="pos.digital"
-						v-tooltip="'This is a digital good. You will receive a link to download the file and will be able to print it by yourself.'"
+
 						)
 				td.text-center ${{pos.price}}
 				td
@@ -37,7 +37,7 @@ import { cart, checkout, total, open, delivery, count } from '../../composables/
 				td(colspan="2")
 					.flex.flex-col.gap-2
 						.flex-1(v-for="(way,name) in delivery.ways" :key="way")
-							label.w-full.px-2.pt-1.pb-2.border-1.rounded-lg.flex.flex-wrap.items-center.border-dark-100.border-opacity-40.transition.cursor-pointer.gap-1.relative(
+							label.w-full.px-2.pt-1.pb-2.border-1.rounded-lg.flex.items-center.border-dark-100.border-opacity-40.transition.cursor-pointer.gap-1.relative(
 								:class="{active:delivery.current == name}"
 								)
 								input.hidden(
@@ -46,8 +46,7 @@ import { cart, checkout, total, open, delivery, count } from '../../composables/
 									v-model="delivery.current"
 									:value="name")
 								.price.text-lg ${{way.price}}&nbsp;
-								.font-normal.text-left {{way.title}}
-								.i-la-info-circle.absolute.top-2.right-2(v-tooltip.top="{content:way.desc, distance:8, delay:200, triggers:['hover']}")
+								.font-normal.text-left(:title="way.description") {{way.title}}
 				td.text-right.font-bold ${{delivery?.selected?.price}}
 			tr(:style="{opacity: count > 1 ? 1: .3}" v-if="delivery.needed")
 				td(colspan="1")
@@ -58,20 +57,24 @@ import { cart, checkout, total, open, delivery, count } from '../../composables/
 				td.relative
 					.flex.items-center.justify-center
 						.i-la-plus.absolute.-left-1.text-1rem(v-if="count>1")
-						img.h-8(src="/media/logo/holologo.svg")
+						img.h-8(src="/logo.svg")
 			tr.sticky.bottom-0
 				td.font-bold(colspan="2") Total
 				td.font-bold.text-center {{ count + (delivery.needed && count>=2 ? 1 : 0) }} items
 				td.font-bold.text-right ${{total}}
 
-.flex.gap-2.mt-2
-	button.font-bold.shop-button.text-md.flex-1(@click="checkout()") CHECKOUT &nbsp;
-		span ${{total}}
-.my-2.text-xs.opacity-40.text-center Safe payment processing service provided by <a href="https://stripe.com" target="_blank">Stripe</a>.  <br> Please <a href="mailto:support@chromatone.center">contact us</a> in case of any problems with checkout.
+	.flex.gap-2.mt-2.p-2
+		button.font-bold.shop-button.text-md.flex-1.bg-purple-500.p-4.rounded-lg.shadow(@click="checkout()") CHECKOUT &nbsp;
+			span ${{total}}
+	.my-2.text-xs.opacity-40.text-center Safe payment processing service provided by <a href="https://stripe.com" target="_blank">Stripe</a>.  <br> Please <a href="mailto:support@chromatone.center">contact us</a> in case of any problems with checkout.
 
 </template>
 
 <style scoped lang="postcss">
+td {
+	@apply p-2;
+}
+
 tr {
 	@apply backdrop-blur-sm
 }

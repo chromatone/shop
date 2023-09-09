@@ -3,13 +3,10 @@ import { cart, addToCart } from '../../composables/cart'
 import { useRoute } from 'vitepress';
 
 const props = defineProps({
-  title: String,
-  product: Object,
-  showButton: {
-    type: Boolean,
-    default: true,
-  },
-  color: { type: String, default: '' }
+  title: { type: String, default: '' },
+  price: { type: Number, default: 0 },
+  digital: { type: Boolean, default: false },
+  stripe_id: { type: String, default: '' },
 });
 
 const route = useRoute()
@@ -17,24 +14,21 @@ const route = useRoute()
 </script>
 
 <template lang="pug">
-.shop-action.text-xl(
+.shop-action.text-xl.relative(
   style="font-weight: normal;"
-  v-if="product",
+  v-if="title",
   )
-  .price.p-2.text-2xl.bg-light-200.bg-opacity-70.rounded-md.dark-bg-dark-400.dark-bg-opacity-70.backdrop-blur-lg.font-bold(
-    :style="{ color: color }"
-  ) ${{ product?.price }} {{  }}
-  .price.p-2.text-2xl.bg-light-200.bg-opacity-70.rounded-md.dark-bg-dark-400.dark-bg-opacity-70.backdrop-blur-lg.font-bold(v-if="product?.digital" v-tooltip="'This is a digital good. You will receive a link to download the file and will be able to print it by yourself.'")
+  .price.p-2.text-2xl.bg-light-200.bg-opacity-70.rounded-md.dark-bg-dark-400.dark-bg-opacity-70.backdrop-blur-lg.font-bold ${{ price }}
+  .price.p-2.text-2xl.bg-light-200.bg-opacity-70.rounded-md.dark-bg-dark-400.dark-bg-opacity-70.backdrop-blur-lg.font-bold(v-if="digital" title="This is a digital good. You will receive a link to download the file and will be able to print it by yourself.")
     .i-la-file-download
-
   .flex-auto
+  slot
   .shop-button.flex.items-center(
     style="flex: 0 0 140px;"
-    v-if="product?.id"
-    :style="{ backgroundColor: color }"
-    @click.prevent.stop="addToCart(title, {...product, path:route.path})") 
+    v-if="stripe_id"
+    @click.prevent.stop="addToCart(title, {...props, path:route.path})") 
 
-    shop-cart-icon.scale-120(:id="product?.id")
+    shop-cart-icon.scale-120(:id="stripe_id")
     .cart-text Add to cart
   //- a.shop-button.flex.items-center(
   //-   v-if="product?.link",

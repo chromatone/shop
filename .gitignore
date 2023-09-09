@@ -5,5 +5,6 @@ node_modules/
 .vitepress/.temp
 .DS_Store
 .env
-shop/public/cover/
+shop/public/categories
+shop/public/products
 dist

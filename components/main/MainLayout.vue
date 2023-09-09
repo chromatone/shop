@@ -7,16 +7,24 @@ const route = useRoute()
 </script>
 
 <template lang="pug">
-.flex.flex-col.bg-light-500.dark-bg-dark-100.text-center.dark-text-light-500.min-h-100dvh.site.items-center.gap-8
-  .p-2.absolute.top-2.right-2.cursor-pointer(@click="isDark = !isDark")
-    .i-la-sun(v-if="!isDark")
-    .i-carbon-moon(v-else)
-  a.flex.flex-col.gap-4.items-center.mt-6(href="/")
+.flex.flex-col.bg-light-500.dark-bg-dark-100.text-center.dark-text-light-500.min-h-100dvh.site.items-center.gap-8.px-4
+  .fixed.top-0.z-20.flex.w-full
+    .p-2.absolute.top-2.right-2.cursor-pointer(@click="isDark = !isDark")
+      .i-la-sun(v-if="!isDark")
+      .i-carbon-moon(v-else)
+    .p-2.flex.items-center.gap-2
+      a.p-0(href="https://chromatone.center" target="_blank") chromatone.center
+      .p-0 /
+      a.p-0(href="/") shop
+  a.flex.flex-col.gap-4.items-center.mt-16(href="/")
     img.w-30(src="/logo.svg")
     .text-4xl.font-bold Chromatone shop
   .flex.flex-col.markdown-body
     transition(name="fade")
       content(:key="route.path")
+  ShopCart
+  a.flex.flex-col.gap-4.items-center.my-6(href="/")
+    img.w-10(src="/logo.svg")
 </template>
 
 <style>
@@ -30,6 +38,14 @@ const route = useRoute()
 
 .fade-enter-from {
   opacity: 0;
+}
+
+html {
+  @apply bg-light-500;
+}
+
+html.dark {
+  @apply bg-dark-100;
 }
 
 :root {
@@ -72,13 +88,11 @@ const route = useRoute()
 
 .markdown-body h1 {
   font-size: 3em;
-  border-bottom: 1px solid #eee;
   padding-bottom: 0.3em;
 }
 
 .markdown-body h2 {
   font-size: 2em;
-  border-bottom: 1px solid #eee;
   padding-bottom: 0.3em;
 }
 

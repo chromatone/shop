@@ -7,7 +7,7 @@ const category = computed(() => data.categories.find((cat) => cat.slug == params
 
 <template lang='pug'>
 .flex.flex-wrap.gap-8.m-4
-  product-card(v-for="product in category.products", :key="product", v-bind="product").
+  ProductCard(v-for="product in category.products", :key="product", v-bind="product").
     
     
 </template>
