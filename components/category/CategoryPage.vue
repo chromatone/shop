@@ -7,7 +7,7 @@ const { params, frontmatter: f } = useData()
 
   h2.text-3xl {{ f?.title }}
   p {{ f?.description }}
-  img(:src="`/categories/${f?.slug}.webp`")
+  //- img(:src="`/categories/${f?.slug}.webp`")
   slot
   ProductList
 </template>

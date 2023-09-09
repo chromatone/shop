@@ -8,7 +8,7 @@ export default {
         '*',
         {
           category: [
-            'slug'
+            'slug', 'title'
           ]
         }
       ]
