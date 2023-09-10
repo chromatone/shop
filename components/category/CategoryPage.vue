@@ -4,8 +4,6 @@ const { params, frontmatter: f } = useData()
 
 <template lang='pug'>
 .flex.flex-col.items-center.max-w-130.gap-8
-
-  .text-4xl {{ f?.title }}
   p {{ f?.description }}
   //- img(:src="`/categories/${f?.slug}.webp`")
   slot

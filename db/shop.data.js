@@ -5,12 +5,6 @@ export default {
   async load() {
     const products = await useItems('products',
       {
-        filter: {
-          status: {
-            _eq: 'published'
-          },
-
-        },
         fields: [
           '*',
           { category: ['slug'] }
@@ -19,11 +13,6 @@ export default {
 
     const categories = await useItems('categories',
       {
-        filter: {
-          status: {
-            _eq: 'published'
-          }
-        },
         fields: [
           '*',
           {
@@ -36,9 +25,16 @@ export default {
     await downloadCovers(products, 'products')
     await downloadCovers(categories, 'categories')
 
+
+    const delivery_types = await useItems('delivery_types')
+
+    const docs = await useItems('docs')
+
     return {
       products,
-      categories
+      categories,
+      delivery_types,
+      docs
     }
   }
 }

@@ -4,8 +4,9 @@ import { useClamp } from '@vueuse/math';
 import { ref, computed, reactive, watch } from 'vue'
 
 import countries from './countries.json'
-import { data as ways } from '../db/delivery.data'
+import { data } from '../db/shop.data'
 
+const { delivery_types } = data
 
 const stripeKey = 'pk_live_51M1WfLBJnUXQERocrGtVUDvfIdzMmecoAClLVFLSi2VG2cNF2kS6bVsR4uUVtMYvusv4lkBMaDuOzgVJUuNMWndm00CVS3obG3'
 
@@ -25,7 +26,7 @@ export const delivery = reactive({
 			need = need || !cart.value[row].digital
 		return need
 	}),
-	ways
+	ways: delivery_types
 })
 
 export const count = computed(() => {
@@ -88,12 +89,10 @@ export async function checkout() {
 	const request = {
 		lineItems,
 		mode: 'payment',
-		successUrl: 'https://chromatone.center/shop/success.html',
-		cancelUrl: 'https://chromatone.center/shop/cancel.html',
+		successUrl: 'https://shop.chromatone.center/success/',
+		cancelUrl: 'https://shop.chromatone.center/cancel/',
 		shippingAddressCollection: delivery.needed ? { allowedCountries: countries } : undefined
 	}
-
-	console.log(request)
 
 	try {
 		await stripe?.redirectToCheckout(request)

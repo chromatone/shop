@@ -1,4 +1,4 @@
-import Layout from '../../components/main/MainLayout.vue'
+import Layout from '../../components/MainLayout.vue'
 export default {
   Layout,
   enhanceApp({ app }) {

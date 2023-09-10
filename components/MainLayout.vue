@@ -1,6 +1,11 @@
 <script setup>
 import '@unocss/reset/tailwind.css'
 import 'uno.css'
+
+import { data } from '../db/shop.data'
+
+const { docs } = data
+
 const { isDark, frontmatter: f } = useData()
 
 const route = useRoute()
@@ -12,22 +17,31 @@ const route = useRoute()
     .p-2.absolute.top-2.right-2.cursor-pointer(@click="isDark = !isDark")
       .i-la-sun(v-if="!isDark")
       .i-carbon-moon(v-else)
-    .p-2.flex.items-center.gap-2
-      a.p-0(href="https://chromatone.center" target="_blank") chromatone.center
-      .p-0 /
-      a.p-0(href="/") shop
+    a.p-2.flex.items-center.gap-2(href="https://chromatone.center" target="_blank") 
+      .i-la-arrow-left.mt-1
+      .p-0 chromatone.center
+
   a.flex.flex-col.gap-4.items-center.mt-16(href="/")
     img.w-30(src="/logo.svg")
-    .text-4xl.font-bold Chromatone shop
-  .flex.flex-col.markdown-body
+  .flex.flex-col.markdown-body.max-w-150
+    .text-4xl.mb-6 {{ f.title }}
     transition(name="fade")
       content(:key="route.path")
-  ShopCart
+  .flex.flex-wrap.gap-2
+    a.text-5xl.relative(href="/cart/" v-if="!route.path.includes('/cart/')")
+      .i-la-shopping-cart
+      ShopCartIcon
   a.flex.flex-col.gap-4.items-center.my-6(href="/")
     img.w-10(src="/logo.svg")
+  .flex.flex-wrap.gap-2.max-w-150.text-sm.justify-center.p-4
+    a.p-1.opacity-40.hover-opacity-80.transition(
+      v-for="doc in docs" :key="doc"
+      :href="`/docs/${doc.slug}/`"
+      ) {{ doc.title }}
+  
 </template>
 
-<style>
+<style lang="postcss">
 .fade-enter-active {
   transition: all 0.5s ease;
 }
@@ -92,13 +106,13 @@ html.dark {
 }
 
 .markdown-body h2 {
-  font-size: 2em;
-  padding-bottom: 0.3em;
+  font-size: 1.5em;
+  @apply py-4;
 }
 
 .markdown-body h3 {
-  font-size: 1.5em;
-  padding-bottom: 0.3em;
+  font-size: 1.2em;
+  @apply py-2;
 }
 
 .markdown-body ul,

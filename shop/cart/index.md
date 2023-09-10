@@ -2,4 +2,4 @@
 title: Shopping cart
 ---
 
-CART
+<ShopCart />
