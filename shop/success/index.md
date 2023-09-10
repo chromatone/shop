@@ -1,7 +1,14 @@
 ---
-title: Thanks for your purchase!
+title: Successful purchase
+description: Thanks for your order!
 ---
 
-Congratulations! You will receive your Chromatone goods as soon as possible. We will send you a notification upon sending them to you.
+## Welcome to the club! ✨
 
-Stay tuned!
+Your payment is successful. Your order is now being processed.
+
+We will send your parcel whithin 2 business days. You will be notified you by e-mail. Digital goods are delivered in hours.
+
+In case of any questions feel free to reach us at [support@chromatone.center](mailto:support@chromatone.center).
+
+So nice to have you with us! Stay tuned!
