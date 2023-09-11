@@ -5,6 +5,7 @@ export default {
   async load() {
     const products = await useItems('products',
       {
+        sort: ['sort'],
         fields: [
           '*',
           { category: ['slug'] }
@@ -13,11 +14,15 @@ export default {
 
     const categories = await useItems('categories',
       {
+        sort: ['sort'],
         fields: [
           '*',
           {
             products: ['*',
-              { category: ['slug'] }]
+              {
+                _sort: ['sort'],
+                category: ['slug']
+              }]
           }
         ]
       })

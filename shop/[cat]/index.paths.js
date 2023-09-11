@@ -4,6 +4,7 @@ export default {
   async paths() {
 
     const categories = await useItems('categories', {
+      sort: ['sort'],
       fields: [
         '*',
         {

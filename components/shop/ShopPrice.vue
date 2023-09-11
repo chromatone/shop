@@ -14,49 +14,25 @@ const route = useRoute()
 </script>
 
 <template lang="pug">
-.shop-action.text-xl.relative(
+.flex.items-center.gap-2.relative.p-2(
   style="font-weight: normal;"
   v-if="title",
   )
-  .price.p-2.text-2xl.bg-light-200.bg-opacity-70.rounded-md.dark-bg-dark-400.dark-bg-opacity-70.backdrop-blur-lg.font-bold ${{ price }}
+  .tracking-widest.tabular-nums.p-2.text-2xl.bg-light-200.bg-opacity-70.rounded-md.dark-bg-dark-400.dark-bg-opacity-70.backdrop-blur-lg.font-bold ${{ price }}
+
   .price.p-2.text-2xl.bg-light-200.bg-opacity-70.rounded-md.dark-bg-dark-400.dark-bg-opacity-70.backdrop-blur-lg.font-bold(v-if="digital" title="This is a digital good. You will receive a link to download the file and will be able to print it by yourself.")
     .i-la-file-download
-  .flex-auto
+
   slot
-  .shop-button.flex.items-center(
-    style="flex: 0 0 140px;"
+  .flex-1.font-bold.ml-2.transition-all.duration-300.flex.items-center.gap-1.bg-purple-500.rounded-xl.shadow.p-2.relative.cursor-pointer(
     v-if="stripe_id"
     @click.prevent.stop="addToCart(title, {...props, id:props.stripe_id, path:route.path})") 
 
+
+    .i-la-shopping-cart
+    .p-0 Add to cart
     shop-cart-icon.scale-120(:id="stripe_id")
-    .cart-text Add to cart
-  //- a.shop-button.flex.items-center(
-  //-   v-if="product?.link",
-  //-   :href="product?.link", 
-  //-   target="_blank"
-  //-   :style="{ backgroundColor: color }"
-  //-   )
-  //-   eva-shopping-bag-outline.order
-  //-   span.cart-text(v-if="showButton") Buy
+  transition(name="fade")
+    a.flex-1.font-bold.ml-2.transition-all.duration-300.flex.items-center.gap-1.bg-purple-300.dark-bg-purple-700.rounded-xl.shadow.p-2.relative.cursor-pointer(href="/cart/" v-if="cart[stripe_id]") View in cart 
 </template>
 
-
-<style lang="postcss" scoped>
-.shop-action {
-  @apply flex items-center gap-2 mb-1;
-}
-
-.price {
-  @apply tracking-widest tabular-nums;
-  flex: 0;
-}
-
-.cart-text {
-  @apply flex-1 text-xl font-bold ml-2 transition-all duration-300;
-
-}
-
-.order {
-  font-size: 1.68rem;
-}
-</style>
