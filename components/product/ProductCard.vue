@@ -8,6 +8,7 @@ const props = defineProps({
   price: { type: Number, default: '' },
   stripe_id: { type: String, default: '' },
   category: { type: Object, default: () => ({}) },
+  digital: { type: Boolean, default: false }
 })
 </script>
 
