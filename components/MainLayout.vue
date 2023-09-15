@@ -12,7 +12,7 @@ const route = useRoute()
 </script>
 
 <template lang="pug">
-.flex.flex-col.bg-light-500.dark-bg-dark-100.dark-text-light-500.min-h-100dvh.site.gap-0.min-h-100vh.items-stretch
+.flex.flex-col.bg-light-500.dark-bg-dark-100.dark-text-light-500.min-h-100dvh.site.gap-0.items-stretch
   .sticky.top-0.z-20.flex.w-full.items-center.gap-2.p-4
     a.opacity-60.hover-opacity-100.transition(href="/") shop
     a.p-0.opacity-40.hover-opacity-100.transition(href="https://chromatone.center" target="_blank") chromatone.center
@@ -39,7 +39,7 @@ const route = useRoute()
     .p-4.text-6xl.relative.w-20.h-20.flex.items-center.justify-center( )
       .i-la-shopping-bag.absolute
       ShopCartIcon.text-xl.absolute.mt-4
-
+  .flex-auto
   a.flex.flex-col.gap-4.items-center.my-6(href="/")
     img.w-10(src="/logo.svg")
 

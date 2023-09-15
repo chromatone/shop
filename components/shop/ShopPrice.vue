@@ -30,7 +30,7 @@ const route = useRoute()
     v-if="stripe_id && !cart[stripe_id]"
     key="add"
     @click.prevent.stop="addToCart(title, {...props, id:props.stripe_id, path:route.path})") 
-      .i-la-shopping-cart
+      .i-la-shopping-bag
       .p-0 Add to cart
       shop-cart-icon(:id="stripe_id")
     a.font-bold.transition-all.duration-300.flex.items-center.gap-1.bg-purple-300.dark-bg-purple-700.rounded-lg.shadow.p-2.relative.cursor-pointer(
