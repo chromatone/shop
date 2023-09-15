@@ -3,20 +3,19 @@ import { cart, checkout, total, open, delivery, count } from '../../composables/
 </script>
 
 <template lang="pug">
-.flex.flex-col.tabular-nums.gap-1.max-w-150.sticky.bottom-0.bg-light-400.dark-bg-dark-200(v-if="cart && Object.keys(cart).length > 0")
+.flex.flex-col.tabular-nums.max-w-150.sticky.bottom-0.bg-light-400.dark-bg-dark-200.w-full.items-stretch(v-if="cart && Object.keys(cart).length > 0")
 
-	table.text-left.m-0.mb-4.text-sm.md-text-lg.w-full
-		tr.text-md.sticky.top-0.z-20
+	table.text-left.m-0.mb-4.text-sm.md-text-16px.w-full
+		tr.text-md.sticky.top-0.z-20.font-bold
 			td Item
 			td.text-center Price
 			td.text-center Quantity
 			td.text-right Total
 		tr(v-for="(pos,id) in cart" :key="id")
-			td.font-bold.flex-1.text-left.flex.items-center.gap-1 
+			td.flex-1.text-left.flex.items-center.gap-1 
 				a.cursor-pointer.no-underline(:href="pos.path" @click="open = false") {{pos.title}}
 				.i-la-file-download.text-sm(
 					v-if="pos.digital"
-
 					)
 			td.text-center ${{pos.price}}
 			td
@@ -62,15 +61,15 @@ import { cart, checkout, total, open, delivery, count } from '../../composables/
 			td.font-bold.text-right ${{total}}
 
 	.flex.gap-2.mt-2.p-2
-		button.font-bold.shop-button.text-md.flex-1.bg-purple-500.p-4.rounded-lg.shadow(@click="checkout()") CHECKOUT &nbsp;
+		button.transition.font-bold.shop-button.text-md.flex-1.bg-purple-400.hover-bg-purple-300.hover-shadow-lg.p-4.rounded-lg.shadow.dark-bg-purple-700.hover-dark-bg-purple-600(@click="checkout()") CHECKOUT &nbsp;
 			span ${{total}}
-	.my-2.text-xs.opacity-40.text-center Safe payment processing service provided by <a href="https://stripe.com" target="_blank">Stripe</a>.  <br> Please <a href="mailto:support@chromatone.center">contact us</a> in case of any problems with checkout.
+	.my-4.text-sm.opacity-40.text-center Safe payment processing service provided by <a href="https://stripe.com" target="_blank">Stripe</a>.  <br> Please <a href="mailto:support@chromatone.center">contact us</a> in case of any problems with checkout.
 
 </template>
 
 <style scoped lang="postcss">
 td {
-	@apply p-2;
+	@apply p-3;
 }
 
 tr {

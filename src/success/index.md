@@ -3,6 +3,16 @@ title: Successful purchase
 description: Thanks for your order!
 ---
 
+<script setup>
+import {cart} from '../../composables/cart'
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  cart.value = {}
+})
+
+</script>
+
 ## Welcome to the club! ✨
 
 Your payment is successful. Your order is now being processed.

@@ -3,7 +3,7 @@ import '@unocss/reset/tailwind.css'
 import 'uno.css'
 
 import { data } from '../db/shop.data'
-
+import { count } from '../composables/cart'
 const { docs } = data
 
 const { isDark, frontmatter: f } = useData()
@@ -12,28 +12,43 @@ const route = useRoute()
 </script>
 
 <template lang="pug">
-.flex.flex-col.bg-light-500.dark-bg-dark-100.text-center.dark-text-light-500.min-h-100dvh.site.items-center.gap-8.px-4
-  .fixed.top-0.z-20.flex.w-full
-    .p-2.absolute.top-2.right-2.cursor-pointer(@click="isDark = !isDark")
+.flex.flex-col.bg-light-500.dark-bg-dark-100.dark-text-light-500.min-h-100dvh.site.gap-0.min-h-100vh.items-stretch
+  .sticky.top-0.z-20.flex.w-full.items-center.gap-2.p-4
+    a.opacity-60.hover-opacity-100.transition(href="/") shop
+    a.p-0.opacity-40.hover-opacity-100.transition(href="https://chromatone.center" target="_blank") chromatone.center
+    .flex-auto
+    .cursor-pointer.mt-2px.opacity-30.hover-opacity-80(@click="isDark = !isDark")
       .i-la-sun(v-if="!isDark")
       .i-carbon-moon(v-else)
-    a.p-2.flex.items-center.gap-2(href="https://chromatone.center" target="_blank") 
-      .i-la-arrow-left.mt-1
-      .p-0 chromatone.center
+  .max-w-140.mx-auto.w-full.flex.flex-col.items-start
+    .flex.items-center.gap-4.mt-6.mb-6
+      img.w-20.sm-w-30.ml-4(src="/logo.svg")
+      .flex.flex-col.gap-2
+        .flex.flex-wrap.items-end.gap-2.capitalize
+          a.text-4xl.font-bold(href="/") Chromatone
+          a.text-md.opacity-40(:href="`/${f?.category?.slug || f?.page_type}/`") {{ f?.category?.title || f?.page_type }}
+        .text-3xl {{ f.title }}
+    .p-6.text-18px.bg-light-700.dark-bg-dark-300.shadow-sm.mx-4(
+      v-if="f?.description"
+    ) {{ f.description }}
 
-  a.flex.flex-col.gap-4.items-center.mt-16(href="/")
-    img.w-30(src="/logo.svg")
-  .flex.flex-col.markdown-body.max-w-150
-    .text-4xl.mb-6 {{ f.title }}
-    transition(name="fade")
-      content(:key="route.path")
-  .flex.flex-wrap.gap-2
-    a.text-5xl.relative(href="/cart/" v-if="!route.path.includes('/cart/')")
-      .i-la-shopping-cart
-      ShopCartIcon
+    .w-full.flex.flex-col.markdown-body.max-w-150.mt-8.px-4
+      content
+
+  a.flex.flex-wrap.gap-2.bg-purple-200.dark-bg-purple-700.rounded-lg.mx-auto.mt-8(v-if="count && route.path != '/cart/'" href="/cart/")
+    .p-4.text-6xl.relative.w-20.h-20.flex.items-center.justify-center( )
+      .i-la-shopping-bag.absolute
+      ShopCartIcon.text-xl.absolute.mt-4
+
   a.flex.flex-col.gap-4.items-center.my-6(href="/")
     img.w-10(src="/logo.svg")
-  .flex.flex-wrap.gap-2.max-w-150.text-sm.justify-center.p-4
+
+  //- .flex.items-center.flex-wrap.p-2.mx-auto.gap-2
+    .p-1.bg-light-100 Chromatone 
+    .p-1.bg-light-100 Shop 
+    .p-1.bg-light-100(v-if="f?.category") {{ f?.category?.title }}
+    .p-1.bg-light-100 {{ f?.title }}
+  .flex.flex-wrap.gap-2.max-w-150.text-sm.justify-center.p-4.mx-auto
     a.p-1.opacity-40.hover-opacity-80.transition(
       v-for="doc in docs" :key="doc"
       :href="`/docs/${doc.slug}/`"
@@ -42,60 +57,6 @@ const route = useRoute()
 </template>
 
 <style lang="postcss">
-.fade-enter-active {
-  transition: all 0.5s ease;
-}
-
-.fade-leave-to {
-  opacity: 0;
-}
-
-.fade-enter-from {
-  opacity: 0;
-}
-
-html {
-  @apply bg-light-500;
-}
-
-html.dark {
-  @apply bg-dark-100;
-}
-
-:root {
-  --font-family-base: "Commissioner", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
-  --font-family-mono: "Fira Code", source-code-pro, Menlo, Monaco, Consolas,
-    "Courier New", monospace;
-}
-
-.site {
-  font-family: var(--font-family-base);
-}
-
-@font-face {
-  font-family: "Commissioner";
-  font-style: normal;
-  font-weight: 400;
-  src: local(""),
-    url("/fonts/commissioner-v3-latin_cyrillic-ext_cyrillic-regular.woff2") format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-    url("/fonts/commissioner-v3-latin_cyrillic-ext_cyrillic-regular.woff") format("woff");
-  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-
-@font-face {
-  font-family: "Commissioner";
-  font-style: normal;
-  font-weight: 700;
-  src: local(""),
-    url("/fonts/commissioner-v3-latin_cyrillic-ext_cyrillic-700.woff2") format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-    url("/fonts/commissioner-v3-latin_cyrillic-ext_cyrillic-700.woff") format("woff");
-  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-
 .markdown-body {
   line-height: 1.6;
 }

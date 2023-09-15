@@ -8,7 +8,7 @@ import fs from 'node:fs'
 export async function downloadCovers(records, folder = '') {
 
   const dirname = path.dirname(fileURLToPath(import.meta.url));
-  let dest = path.resolve(dirname, '../shop/public/', folder)
+  let dest = path.resolve(dirname, '../src/public/', folder)
   if (!fs.existsSync(dest)) {
     fs.mkdirSync(dest, { recursive: true });
   }
