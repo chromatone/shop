@@ -1,5 +1,7 @@
 <script setup>
 import { cart, checkout, total, open, delivery, count } from '../../composables/cart'
+
+const { isDark } = useData()
 </script>
 
 <template lang="pug">
@@ -61,9 +63,13 @@ import { cart, checkout, total, open, delivery, count } from '../../composables/
 			td.font-bold.text-right ${{total}}
 
 	.flex.gap-2.mt-2.p-2
-		button.transition.font-bold.shop-button.text-md.flex-1.bg-purple-400.hover-bg-purple-300.hover-shadow-lg.p-4.rounded-lg.shadow.dark-bg-purple-700.hover-dark-bg-purple-600(@click="checkout()") CHECKOUT &nbsp;
-			span ${{total}}
-	.my-4.text-sm.opacity-40.text-center Safe payment processing service provided by <a href="https://stripe.com" target="_blank">Stripe</a>.  <br> Please <a href="mailto:support@chromatone.center">contact us</a> in case of any problems with checkout.
+		button.flex.items-center.transition.font-bold.shop-button.text-md.flex-1.hover-shadow-lg.p-4.rounded-lg.shadow(
+			:style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .2 ${350} / .8)`}"
+			@click="checkout()") 
+				.flex-0 CHECKOUT 
+				.flex-1
+				.flex-0 ${{ total }}
+	.my-4.text-sm.opacity-40.text-center Secure payment processing provided by <a class="font-bold" href="https://stripe.com" target="_blank">Stripe</a>.  <br> Please <a class="font-bold" href="mailto:support@chromatone.center">contact us</a> in case of any problems with checkout.
 
 </template>
 

@@ -8,7 +8,7 @@ export default {
         sort: ['sort'],
         fields: [
           '*',
-          { category: ['slug'] }
+          { category: ['slug', 'title', 'products'] }
         ]
       })
 
@@ -20,8 +20,7 @@ export default {
           {
             products: ['*',
               {
-                _sort: ['sort'],
-                category: ['slug']
+                category: ['slug', 'title', 'products']
               }]
           }
         ]

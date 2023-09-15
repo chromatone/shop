@@ -1,4 +1,6 @@
 <script setup>
+import { data } from '../../db/shop.data'
+
 const props = defineProps({
   title: { type: String, default: '' },
   description: { type: String, default: '' },
@@ -8,8 +10,10 @@ const props = defineProps({
   price: { type: Number, default: '' },
   stripe_id: { type: String, default: '' },
   category: { type: Object, default: () => ({}) },
-  digital: { type: Boolean, default: false }
+  digital: { type: Boolean, default: false },
+  sort: { type: Number, default: '' },
 })
+
 </script>
 
 <template lang='pug'>
@@ -20,7 +24,7 @@ const props = defineProps({
         style="margin:0"
         :src="`/products/${slug}.webp`")
     .flex.flex-col.p-4.gap-2(style="flex: 1 1 100px")
-      .text-2xl.font-bold.items-center.gap-2 {{ title }}
+      .text-2xl.font-bold.items-center.gap-2 {{ title }} {{ category.products.findIndex(el=>el.slug == slug) }}
       .text-md.leading-normal {{ description }}
 
   shop-price.w-full(

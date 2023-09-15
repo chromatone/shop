@@ -4,11 +4,15 @@ import 'uno.css'
 
 import { data } from '../db/shop.data'
 import { count } from '../composables/cart'
+import { computed } from 'vue';
 const { docs } = data
 
 const { isDark, frontmatter: f } = useData()
 
 const route = useRoute()
+
+const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.value?.sort || 1) - 1) * 360 / data?.categories.length})`)
+
 </script>
 
 <template lang="pug">
@@ -28,17 +32,23 @@ const route = useRoute()
           a.text-4xl.font-bold(href="/") Chromatone
           a.text-md.opacity-40(:href="`/${f?.category?.slug || f?.page_type}/`") {{ f?.category?.title || f?.page_type }}
         .text-3xl {{ f.title }}
-    .p-6.text-18px.bg-light-700.dark-bg-dark-300.shadow-sm.mx-4(
+
+    .p-6.text-18px.border-l-16.bg-light-200.dark-bg-dark-300.shadow-sm.mx-4(
       v-if="f?.description"
+      :style="{borderColor:pageColor}"
     ) {{ f.description }}
 
     .w-full.flex.flex-col.markdown-body.max-w-150.mt-8.px-4
       content
 
-  a.flex.flex-wrap.gap-2.bg-purple-200.dark-bg-purple-700.rounded-lg.mx-auto.mt-8(v-if="count && route.path != '/cart/'" href="/cart/")
-    .p-4.text-6xl.relative.w-20.h-20.flex.items-center.justify-center( )
+  a.flex.flex-wrap.gap-2.rounded-lg.mx-auto.mt-8(
+    v-if="count && route.path != '/cart/'" 
+    href="/cart/"
+    :style="{backgroundColor: `oklch(${isDark ? 55 : 97}% .12 ${ 350})`}"
+    )
+    .p-12.text-7xl.relative.w-20.h-20.flex.items-center.justify-center( )
       .i-la-shopping-bag.absolute
-      ShopCartIcon.text-xl.absolute.mt-4
+      ShopCartIcon.text-xl.absolute.mt-6
   .flex-auto
   a.flex.flex-col.gap-4.items-center.my-6(href="/")
     img.w-10(src="/logo.svg")
@@ -48,12 +58,13 @@ const route = useRoute()
     .p-1.bg-light-100 Shop 
     .p-1.bg-light-100(v-if="f?.category") {{ f?.category?.title }}
     .p-1.bg-light-100 {{ f?.title }}
-  .flex.flex-wrap.gap-2.max-w-150.text-sm.justify-center.p-4.mx-auto
+  .flex.flex-wrap.gap-2.max-w-150.text-sm.justify-center.p-0.mx-auto
     a.p-1.opacity-40.hover-opacity-80.transition(
       v-for="doc in docs" :key="doc"
       :href="`/docs/${doc.slug}/`"
       ) {{ doc.title }}
-  
+  .flex.flex-wrap.gap-2.max-w-150.text-sm.justify-center.p-4.mx-auto.mb-8
+    a.opacity-30.hover-opacity-80(href="mailto:support@chromatone.center") support@chromatone.center
 </template>
 
 <style lang="postcss">

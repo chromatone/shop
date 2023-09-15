@@ -9,7 +9,7 @@ const { params, frontmatter: f } = useData()
     v-bind="f"
     )
   img(:src="`/products/${f.slug}.webp`")
-  slot
+  slot 
   shop-price.w-full(
     v-bind="f"
     )

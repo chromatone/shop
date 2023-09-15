@@ -1,6 +1,6 @@
 <script setup>
 import { cart, addToCart } from '../../composables/cart'
-import { useRoute } from 'vitepress';
+import { useRoute, useData } from 'vitepress';
 
 const props = defineProps({
   title: { type: String, default: '' },
@@ -11,14 +11,16 @@ const props = defineProps({
 
 const route = useRoute()
 
+const { isDark } = useData()
+
 </script>
 
 <template lang="pug">
-.flex.items-center.gap-2.relative.p-2(
+.flex.items-center.gap-2.relative.p-2.bg-light-100.rounded.dark-bg-dark-200(
   style="font-weight: normal;"
   v-if="title",
   )
-  .tracking-widest.tabular-nums.p-2.text-2xl.bg-light-200.bg-opacity-70.rounded-md.dark-bg-dark-400.dark-bg-opacity-70.backdrop-blur-lg.font-bold ${{ price }}
+  .tracking-widest.tabular-nums.p-2.text-2xl.bg-light-500.bg-opacity-100.rounded.dark-bg-dark-800.dark-bg-opacity-70.backdrop-blur-lg.font-bold ${{ price }}
 
   .price.p-2.text-2xl.bg-light-200.bg-opacity-70.rounded-md.dark-bg-dark-400.dark-bg-opacity-70.backdrop-blur-lg.font-bold(v-if="digital" title="This is a digital good. You will receive a link to download the file and will be able to print it by yourself.")
     .i-la-file-download
@@ -26,18 +28,20 @@ const route = useRoute()
   slot
   .p-0(style="flex: 1000;")
   transition-group(name="fade")
-    .flex-auto.font-bold.ml-2.transition-all.duration-300.flex.items-center.gap-1.bg-purple-300.dark-bg-purple-500.rounded-lg.shadow.p-2.relative.cursor-pointer.flex.items-center.justify-center(
-    v-if="stripe_id && !cart[stripe_id]"
-    key="add"
-    @click.prevent.stop="addToCart(title, {...props, id:props.stripe_id, path:route.path})") 
-      .i-la-shopping-bag
-      .p-0 Add to cart
+    .flex-auto.font-bold.ml-2.transition-all.duration-300.flex.items-center.gap-1.rounded.shadow.p-3.relative.cursor-pointer.flex.items-center.justify-center(
+      :style="{backgroundColor: `oklch(${isDark ? 70 : 97}% .2 ${350} / .5)`}"
+      v-if="stripe_id && !cart[stripe_id]"
+      key="add"
+      @click.prevent.stop="addToCart(title, {...props, id:props.stripe_id, path:route.path})") 
+      .i-la-shopping-bag.text-2xl
+      .p-0.uppercase Add to cart
       shop-cart-icon(:id="stripe_id")
-    a.font-bold.transition-all.duration-300.flex.items-center.gap-1.bg-purple-300.dark-bg-purple-700.rounded-lg.shadow.p-2.relative.cursor-pointer(
-      style="flex:1 1 90px;"
+    a.font-bold.transition-all.duration-300.flex.items-center.gap-2.rounded-lg.shadow.p-2.relative.cursor-pointer(
+      :style="{backgroundColor: `oklch(${isDark ? 50 : 97}% .1 ${350} / .5)`}"
+      style="flex:1 1 130px;"
       key="view"
       href="/cart/" v-if="cart[stripe_id]") 
-      .i-la-check
-      .p-0 In cart
+      .i-la-check.text-2xl
+      .p-0.uppercase In cart
 </template>
 

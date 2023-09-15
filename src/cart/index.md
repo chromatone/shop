@@ -1,6 +1,6 @@
 ---
 title: Cart
-description: We process orders in 2 business days (often much sooner). We will notify you when it's shipped.
+description: Normally we send orders worldwide in 2 business days. We will notify you when the parcel goes out for shipping.
 ---
 
 <ShopCart />
