@@ -7,14 +7,16 @@ const { isDark } = useData()
 <template lang="pug">
 .flex.flex-col.tabular-nums.max-w-150.sticky.bottom-0.bg-light-400.dark-bg-dark-200.w-full.items-stretch(v-if="cart && Object.keys(cart).length > 0")
 
-	table.text-left.m-0.mb-4.text-sm.md-text-16px.w-full
+	table.text-left.m-0.mb-4.w-full
 		tr.text-md.sticky.top-0.z-20.font-bold
 			td Item
 			td.text-center Price
 			td.text-center Quantity
 			td.text-right Total
-		tr(v-for="(pos,id) in cart" :key="id")
-			td.flex-1.text-left.flex.items-center.gap-1 
+		tr(v-for="(pos,id,i) in cart" :key="id")
+			td.flex-1.text-left.flex.items-center.gap-1.border-l-10(
+				:style="{borderColor:`oklch(${isDark ? 60 : 92}% .07 ${i * 360 / Object.keys(cart)?.length})`}"
+			)
 				a.cursor-pointer.no-underline(:href="pos.path" @click="open = false") {{pos.title}}
 				.i-la-file-download.text-sm(
 					v-if="pos.digital"

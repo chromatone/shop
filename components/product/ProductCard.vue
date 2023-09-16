@@ -1,6 +1,11 @@
 <script setup>
 import { data } from '../../db/shop.data'
 
+import { cart, addToCart } from '../../composables/cart'
+import { useData } from 'vitepress';
+
+const { isDark } = useData()
+
 const props = defineProps({
   title: { type: String, default: '' },
   description: { type: String, default: '' },
@@ -17,7 +22,12 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-.overflow-hidden.flex.flex-col.shadow-lg.hover-shadow-xl.transition.flex-1.dark-bg-dark-300.bg-light-400.rounded(:href="`/${category?.slug}/${slug}/`" style=" flex: 1 1 auto" )
+.overflow-hidden.flex.flex-col.shadow-lg.hover-shadow-xl.transition.flex-1.dark-bg-dark-300.bg-light-400.rounded(
+  :style="{borderColor:`oklch(${isDark ? 60 : 92}% .07 ${sort*360/data?.products.length})`}"
+  :href="`/${category?.slug}/${slug}/`" 
+  style=" flex: 1 1 auto" 
+  :class="{'border-10':!!cart[stripe_id], 'border-l-16':!cart[stripe_id] }"
+  )
   a(:href="`/${category?.slug}/${slug}/`")
     .p-0.min-w-50.relative(style="flex: 0 0 ")
       img(
@@ -26,9 +36,10 @@ const props = defineProps({
     .flex.flex-col.p-4.gap-2(style="flex: 1 1 100px")
       .text-2xl.font-bold.items-center.gap-2 {{ title }}
       .text-md.leading-normal {{ description }}
-
+  slot 
   shop-price.w-full(
     v-bind="props"
+    :color="`oklch(${isDark ? 60 : 92}% .07 ${sort*360/data?.products.length})`"
     )
 </template>
 
