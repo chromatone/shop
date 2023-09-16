@@ -22,8 +22,9 @@ const { isDark } = useData()
   )
   .tracking-widest.tabular-nums.p-2.text-2xl.bg-light-500.bg-opacity-100.rounded.dark-bg-dark-800.dark-bg-opacity-70.backdrop-blur-lg.font-bold ${{ price }}
 
-  .price.p-2.text-2xl.bg-light-200.bg-opacity-70.rounded-md.dark-bg-dark-400.dark-bg-opacity-70.backdrop-blur-lg.font-bold(v-if="digital" title="This is a digital good. You will receive a link to download the file and will be able to print it by yourself.")
-    .i-la-file-download
+  .flex.gap-2.items-center.price.p-2.bg-light-200.bg-opacity-70.rounded-md.dark-bg-dark-400.dark-bg-opacity-70.backdrop-blur-lg.font-bold(v-if="digital" title="This is a digital product. You will receive a link to download the PDF file and will have a personal licence to print it by yourself.")
+    .i-la-file-download.text-2x
+    .p-1 DIGITAL
   .flex-1
   slot
   .p-0(style="flex: 1000;")

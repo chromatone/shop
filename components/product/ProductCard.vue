@@ -24,7 +24,7 @@ const props = defineProps({
         style="margin:0"
         :src="`/products/${slug}.webp`")
     .flex.flex-col.p-4.gap-2(style="flex: 1 1 100px")
-      .text-2xl.font-bold.items-center.gap-2 {{ title }} {{ category.products.findIndex(el=>el.slug == slug) }}
+      .text-2xl.font-bold.items-center.gap-2 {{ title }}
       .text-md.leading-normal {{ description }}
 
   shop-price.w-full(
