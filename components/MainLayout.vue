@@ -46,7 +46,7 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
     href="/cart/"
     :style="{backgroundColor: `oklch(${isDark ? 55 : 97}% .12 ${ 350})`}"
     )
-    .p-12.text-7xl.relative.w-20.h-20.flex.items-center.justify-center( )
+    .p-12.text-7xl.relative.w-20.h-20.flex.items-center.justify-center
       .i-la-shopping-bag.absolute
       ShopCartIcon.text-xl.absolute.mt-6
   .flex-auto

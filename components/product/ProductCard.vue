@@ -26,7 +26,7 @@ const props = defineProps({
   :style="{borderColor:`oklch(${isDark ? 60 : 92}% .07 ${sort*360/data?.products.length})`}"
   :href="`/${category?.slug}/${slug}/`" 
   style=" flex: 1 1 auto" 
-  :class="{'border-10':!!cart[stripe_id], 'border-l-16':!cart[stripe_id] }"
+  :class="{'border-10':!!cart[stripe_id], 'border-5':!cart[stripe_id] }"
   )
   a(:href="`/${category?.slug}/${slug}/`")
     .p-0.min-w-50.relative(style="flex: 0 0 ")
