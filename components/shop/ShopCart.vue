@@ -17,8 +17,8 @@ const { isDark } = useData()
 			td.flex-1.text-left.flex.items-center.gap-1.border-l-10(
 				:style="{borderColor:`oklch(${isDark ? 60 : 92}% .07 ${i * 360 / Object.keys(cart)?.length})`}"
 			)
-				a.cursor-pointer.no-underline(:href="pos.path" @click="open = false") {{pos.title}}
-				.i-la-file-download.text-sm(
+				a.cursor-pointer.no-underline(:href="`${pos.path}${pos.slug}/`" @click="open = false") {{pos.title}}
+				.i-la-file-download.text-xl.w-20(
 					v-if="pos.digital"
 					)
 			td.text-center ${{pos.price}}
@@ -59,16 +59,19 @@ const { isDark } = useData()
 				.flex.items-center.justify-center
 					.i-la-plus.absolute.-left-1.text-1rem(v-if="count>1")
 					img.h-8(src="/logo.svg")
+
+		tr(v-else)
+			td.p-2(colspan="4") All products in your cart are digital. We will send you the download link shortly.
 		tr.sticky.bottom-0
 			td.font-bold(colspan="2") Total
 			td.font-bold.text-center {{ count + (delivery.needed && count>=2 ? 1 : 0) }} items
 			td.font-bold.text-right ${{total}}
 
 	.flex.gap-2.mt-2.p-2
-		button.flex.items-center.transition.font-bold.shop-button.text-md.flex-1.hover-shadow-lg.p-4.rounded-lg.shadow(
+		button.flex.items-center.transition.font-bold.shop-button.text-xl.flex-1.hover-shadow-lg.p-4.rounded-lg.shadow(
 			:style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .2 ${350} / .8)`}"
 			@click="checkout()") 
-				.flex-0 CHECKOUT 
+				.flex-0 PROCEED TO CHECKOUT 
 				.flex-1
 				.flex-0 ${{ total }}
 	.my-4.text-sm.opacity-40.text-center Secure payment processing provided by <a class="font-bold" href="https://stripe.com" target="_blank">Stripe</a>.  <br> Please <a class="font-bold" href="mailto:support@chromatone.center">contact us</a> in case of any problems with checkout.

@@ -6,6 +6,9 @@ const category = computed(() => data.categories.find((cat) => cat.slug == params
 </script>
 
 <template lang='pug'>
-.flex.flex-wrap.gap-16
-  ProductCard(v-for="product in [...category.products].sort((a,b)=>a.sort>b.sort ? 1 : -1)", :key="product", v-bind="product")
+.flex.flex-wrap.gap-8.my-16
+  ProductCard.max-w-120(
+    style="flex:1 1 300px"
+    v-for="product in [...category.products].sort((a,b)=>a.sort>b.sort ? 1 : -1)", :key="product", v-bind="product"
+    )
 </template>

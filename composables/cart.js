@@ -58,11 +58,11 @@ watch(cart, c => {
 	}
 }, { deep: true })
 
-export function addToCart(title, { id, price, digital, path }) {
+export function addToCart(title, { id, price, digital, path, slug }) {
 	if (cart.value[id]) {
 		cart.value[id].quantity++
 	} else {
-		cart.value[id] = { id, title, price, quantity: useClamp(1, 0, MaxQuantity).value, digital, path }
+		cart.value[id] = { id, title, slug, price, quantity: useClamp(1, 0, MaxQuantity).value, digital, path }
 	}
 	open.value = true
 }

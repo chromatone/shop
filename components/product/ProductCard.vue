@@ -28,8 +28,8 @@ const props = defineProps({
   style=" flex: 1 1 auto" 
   :class="{'border-10':!!cart[stripe_id], 'border-5':!cart[stripe_id] }"
   )
-  a(:href="`/${category?.slug}/${slug}/`")
-    .p-0.min-w-50.relative(style="flex: 0 0 ")
+  a.flex-auto(:href="`/${category?.slug}/${slug}/`")
+    .p-0.min-w-50.relative.max-h-80.overflow-hidden(style="flex: 1 0 ")
       img(
         style="margin:0"
         :src="`/products/${slug}.webp`")

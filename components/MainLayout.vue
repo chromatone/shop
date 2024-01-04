@@ -24,7 +24,7 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
     .cursor-pointer.mt-2px.opacity-30.hover-opacity-80(@click="isDark = !isDark")
       .i-la-sun(v-if="!isDark")
       .i-carbon-moon(v-else)
-  .max-w-140.mx-auto.w-full.flex.flex-col.items-start
+  .w-full.flex.flex-col.items-start
     .flex.items-center.gap-4.mt-6.mb-6
       img.w-20.sm-w-30.ml-4(src="/logo.svg")
       .flex.flex-col.gap-2
@@ -33,22 +33,23 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
           a.text-md.opacity-40(:href="`/${f?.category?.slug || f?.page_type}/`") {{ f?.category?.title || f?.page_type }}
         .text-3xl {{ f.title }}
 
-    .p-6.text-18px.border-l-16.bg-light-200.dark-bg-dark-300.shadow-sm.mx-4(
+    .p-6.text-18px.border-l-16.bg-light-200.dark-bg-dark-300.shadow-sm.mx-4.max-w-150(
       v-if="f?.description"
       :style="{borderColor:pageColor}"
     ) {{ f.description }}
 
-    .w-full.flex.flex-col.markdown-body.max-w-150.mt-8.px-4
+    .w-full.flex.flex-col.markdown-body.mt-8.px-4
       content
 
-  a.flex.flex-wrap.gap-2.rounded-lg.mx-auto.mt-8(
+  a.flex.flex-wrap.gap-2.rounded-lg.mt-8.shadow-md.hover-shadow-lg.transition.px-2.max-w-140.ml-8(
     v-if="count && route.path != '/cart/'" 
     href="/cart/"
     :style="{backgroundColor: `oklch(${isDark ? 55 : 97}% .12 ${ 350})`}"
     )
-    .p-12.text-7xl.relative.w-20.h-20.flex.items-center.justify-center
-      .i-la-shopping-bag.absolute
-      ShopCartIcon.text-xl.absolute.mt-6
+    .p-8.relative.h-20.flex.flex-col.items-center.justify-center
+      .i-la-shopping-bag.absolute.left-1px.text-6xl
+      ShopCartIcon.text-sm.absolute.mt-5.left-6
+      .ml-12.text-xl.uppercase Proceed to cart
   .flex-auto
   a.flex.flex-col.gap-4.items-center.my-6(href="/")
     img.w-10(src="/logo.svg")
