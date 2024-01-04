@@ -10,8 +10,9 @@ const props = defineProps({
   stripe_id: { type: String, default: '' },
   color: { type: String, default: '' },
   sort: { type: Number, default: 0 },
-  material: { type: String, default: 'VINYL' },
-  slug: { type: String, default: '' }
+  material: { type: Array, default: () => ['VINYL'] },
+  slug: { type: String, default: '' },
+  category: { type: Object, default: {} },
 });
 
 const route = useRoute()
@@ -40,8 +41,7 @@ const backgroundColor = computed(() => props.color || `oklch(${isDark.value ? 60
       .p-1 DIGITAL
     template(v-else)
       .i-mdi-email-newsletter
-      .p-1.uppercase {{ material }}
-
+      .p-1.uppercase {{ material?.[0] }}
 
   slot
   transition(name="fade" mode="out-in")
@@ -49,7 +49,7 @@ const backgroundColor = computed(() => props.color || `oklch(${isDark.value ? 60
       :style="{backgroundColor}"
       style="flex: 1 1 180px"
       key="add"
-      @click.prevent.stop="stripe_id && !cart[stripe_id] ? addToCart(title, {id:props.stripe_id, path:route.path, ...props}) : router.go('/cart/')") 
+      @click.prevent.stop="stripe_id && !cart[stripe_id] ? addToCart(title, {id:props.stripe_id, path:route.path, ...props, category: category.slug}) : router.go('/cart/')") 
       template(v-if="stripe_id && !cart[stripe_id]")
         .i-la-shopping-bag.text-2xl
         .p-0.uppercase.whitespace-nowrap Add to cart

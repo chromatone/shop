@@ -26,7 +26,8 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
       .i-carbon-moon(v-else)
   .w-full.flex.flex-col.items-start
     .flex.items-center.gap-4.mt-6.mb-6
-      img.w-20.sm-w-30.ml-4(src="/logo.svg")
+      a(href="/") 
+        img.w-20.sm-w-30.ml-4(src="/logo.svg")
       .flex.flex-col.gap-2
         .flex.flex-wrap.items-end.gap-2.capitalize
           a.text-4xl.font-bold(href="/") Chromatone
@@ -41,34 +42,42 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
     .w-full.flex.flex-col.markdown-body.mt-8.px-4
       content
 
-  a.flex.flex-wrap.gap-2.rounded-lg.mt-8.shadow-md.hover-shadow-lg.transition.px-2.max-w-140.ml-8(
+  a.flex.flex-wrap.gap-2.rounded-lg.mt-8.shadow-md.hover-shadow-lg.transition.px-2.max-w-140.ml-4(
     v-if="count && route.path != '/cart/'" 
     href="/cart/"
-    :style="{backgroundColor: `oklch(${isDark ? 55 : 97}% .12 ${ 350})`}"
+    :style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .2 ${350} / .8)`}"
     )
-    .p-8.relative.h-20.flex.flex-col.items-center.justify-center
-      .i-la-shopping-bag.absolute.left-1px.text-6xl
-      ShopCartIcon.text-sm.absolute.mt-5.left-6
-      .ml-12.text-xl.uppercase Proceed to cart
+    .px-4.relative.py-4.flex.items-center.justify-center.w-full.gap-4()
+      .i-tabler-shopping-cart-check.text-xl
+      .text-xl.uppercase.flex-auto.font-bold Proceed to cart
+      ShopCartIcon.text-lg.left-6
+
   .flex-auto
-  a.flex.flex-col.gap-4.items-center.my-6(href="/")
+  a.flex.items-center.font-bold.gap-4.items-start.ml-10.my-6(href="/")
     img.w-10(src="/logo.svg")
+    .text-xl Chromatone
 
   //- .flex.items-center.flex-wrap.p-2.mx-auto.gap-2
     .p-1.bg-light-100 Chromatone 
     .p-1.bg-light-100 Shop 
     .p-1.bg-light-100(v-if="f?.category") {{ f?.category?.title }}
     .p-1.bg-light-100 {{ f?.title }}
-  .flex.flex-wrap.gap-2.max-w-150.text-sm.justify-center.p-0.mx-auto
+  .flex.flex-wrap.gap-2.max-w-150.text-sm.justify-start.p-0.mx-8
     a.p-1.opacity-40.hover-opacity-80.transition(
       v-for="doc in docs" :key="doc"
       :href="`/docs/${doc.slug}/`"
       ) {{ doc.title }}
-  .flex.flex-wrap.gap-2.max-w-150.text-sm.justify-center.p-4.mx-auto.mb-8
+  .flex.flex-wrap.gap-2.text-sm.justify-start.p-4.m-6
     a.opacity-30.hover-opacity-80(href="mailto:support@chromatone.center") support@chromatone.center
 </template>
 
 <style lang="postcss">
+.markdown-body {
+  p {
+    @apply max-w-120 my-4
+  }
+}
+
 .markdown-body {
   line-height: 1.6;
 }

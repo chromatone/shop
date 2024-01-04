@@ -14,14 +14,15 @@ const { isDark } = useData()
 			td.text-center Quantity
 			td.text-right Total
 		tr(v-for="(pos,id,i) in cart" :key="id")
-			td.flex-1.text-left.flex.items-center.gap-1.border-l-10(
+			td.flex-1.text-left.flex.items-center.gap-2.border-l-10(
 				:style="{borderColor:`oklch(${isDark ? 60 : 92}% .07 ${i * 360 / Object.keys(cart)?.length})`}"
-			)
-				a.cursor-pointer.no-underline(:href="`${pos.path}${pos.slug}/`" @click="open = false") {{pos.title}}
+				)
+				img.max-w-20(:src="`/products/${pos.slug}.webp`")
+				a.cursor-pointer.no-underline.flex-auto(:href="`/${pos.category}/${pos.slug}/`" @click="open = false") {{pos.title}}
 				.i-la-file-download.text-xl.w-20(
 					v-if="pos.digital"
 					)
-			td.text-center ${{pos.price}}
+			td.text-center ${{pos.price}} 
 			td
 				.flex.justify-between.items-center
 					.flex.gap-2.items-center.flex-1.justify-center
@@ -68,19 +69,20 @@ const { isDark } = useData()
 			td.font-bold.text-right ${{total}}
 
 	.flex.gap-2.mt-2.p-2
-		button.flex.items-center.transition.font-bold.shop-button.text-xl.flex-1.hover-shadow-lg.p-4.rounded-lg.shadow(
+		button.flex.items-center.transition.font-bold.shop-button.text-xl.flex-1.hover-shadow-lg.p-4.rounded-lg.shadow.gap-4(
 			:style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .2 ${350} / .8)`}"
 			@click="checkout()") 
+				.i-tabler-credit-card-pay
 				.flex-0 PROCEED TO CHECKOUT 
 				.flex-1
 				.flex-0 ${{ total }}
-	.my-4.text-sm.opacity-40.text-center Secure payment processing provided by <a class="font-bold" href="https://stripe.com" target="_blank">Stripe</a>.  <br> Please <a class="font-bold" href="mailto:support@chromatone.center">contact us</a> in case of any problems with checkout.
+	.my-4.text-sm.opacity-40.px-4 Secure payment processing provided by <a class="font-bold" href="https://stripe.com" target="_blank">Stripe</a>.  <br> Please <a class="font-bold" href="mailto:support@chromatone.center">contact us</a> in case of any problems with checkout.
 
 </template>
 
 <style scoped lang="postcss">
 td {
-	@apply p-3;
+	@apply p-2;
 }
 
 tr {

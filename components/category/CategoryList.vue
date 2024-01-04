@@ -6,7 +6,7 @@ const { isDark } = useData()
 
 <template lang='pug'>
 .flex.flex-wrap.gap-8
-  a.border-8.relative.bg-light-300.flex-1.flex.flex-col.items-center.shadow.hover-shadow-xl.transition.hover-bg-light-200.dark-bg-dark-300.hover-dark-bg-dark-200.max-w-120(
+  a.flex.flex-col.border-8.relative.bg-light-300.flex-1.items-start.shadow.hover-shadow-xl.transition.hover-bg-light-200.dark-bg-dark-300.hover-dark-bg-dark-200.max-w-140(
     style="flex: 1 1 280px"
     v-for="(category,c,t) in data?.categories", 
     :key="category", 
