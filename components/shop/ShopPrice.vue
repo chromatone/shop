@@ -40,7 +40,7 @@ const backgroundColor = computed(() => props.color || `oklch(${isDark.value ? 60
       .p-1 DIGITAL
     template(v-else)
       .i-mdi-email-newsletter
-      .p-1 {{ material.toUpperCase() }}
+      .p-1.uppercase {{ material }}
 
 
   slot
