@@ -42,10 +42,10 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
     .w-full.flex.flex-col.markdown-body.mt-8.px-4
       content
 
-  a.flex.flex-wrap.gap-2.rounded-lg.mt-8.shadow-md.hover-shadow-lg.transition.px-2.max-w-140.ml-4(
+  a.flex.flex-wrap.gap-2.rounded.mt-8.shadow-md.hover-shadow-lg.transition.px-2.max-w-140.mx-4(
     v-if="count && route.path != '/cart/'" 
     href="/cart/"
-    :style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .2 ${350} / .8)`}"
+    :style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .16 ${350} / .5)`}"
     )
     .px-4.relative.py-4.flex.items-center.justify-center.w-full.gap-4()
       .i-tabler-shopping-cart-check.text-xl

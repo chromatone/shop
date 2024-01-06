@@ -28,15 +28,16 @@ const props = defineProps({
   style=" flex: 1 1 auto" 
   :class="{'border-10':!!cart[stripe_id], 'border-5':!cart[stripe_id] }"
   )
-  a.flex-auto(:href="`/${category?.slug}/${slug}/`")
-    .p-0.min-w-50.relative.max-h-80.overflow-hidden(style="flex: 1 0 ")
+  a.flex-auto.flex.flex-wrap.items-start.bg-light-100.dark-bg-dark-300(:href="`/${category?.slug}/${slug}/`")
+    .p-0.min-w-50.relative.max-h-70.overflow-hidden(style="flex: 1 0 240px ")
       img(
         style="margin:0"
         :src="`/products/${slug}.webp`")
-    .flex.flex-col.p-4.gap-2(style="flex: 1 1 100px")
+    .flex.flex-col.p-4.gap-2(style="flex: 1 1 180px")
       .text-2xl.font-bold.items-center.gap-2 {{ title }}
       .text-md.leading-normal {{ description }}
-  slot 
+
+    slot 
   shop-price.w-full(
     v-bind="props"
     :color="`oklch(${isDark ? 60 : 92}% .07 ${sort*360/data?.products.length})`"

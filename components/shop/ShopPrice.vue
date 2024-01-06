@@ -26,7 +26,7 @@ const backgroundColor = computed(() => props.color || `oklch(${isDark.value ? 60
 </script>
 
 <template lang="pug">
-.flex.items-stretch.flex-wrap.relative.bg-light-500.dark-bg-dark-500.select-none(
+.flex.items-stretch.flex-wrap.relative.bg-light-700.dark-bg-dark-500.select-none(
   style="font-weight: normal;"
   v-if="title",
   )
