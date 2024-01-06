@@ -22,7 +22,7 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-.overflow-hidden.flex.flex-col.shadow-lg.hover-shadow-xl.transition.flex-1.dark-bg-dark-300.bg-light-400.rounded(
+.overflow-hidden.flex.flex-col.shadow.hover-shadow-lg.transition.flex-1.dark-bg-dark-300.bg-light-400.rounded(
   :style="{borderColor:`oklch(${isDark ? 60 : 92}% .07 ${sort*360/data?.products.length})`}"
   :href="`/${category?.slug}/${slug}/`" 
   style=" flex: 1 1 auto" 
