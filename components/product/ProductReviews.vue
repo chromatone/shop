@@ -1,5 +1,5 @@
 <script setup>
-import { createDirectus, readItem, rest, createItem } from '@directus/sdk';
+import { createDirectus, readItem, rest, createItem, uploadFiles } from '@directus/sdk';
 import { computed, onMounted, ref } from 'vue';
 
 const props = defineProps({
@@ -34,7 +34,6 @@ const added = ref(false)
 const form = reactive({
   status: 'draft',
   date: new Date().toISOString().split('T')[0],
-  title: "",
   content: '',
   rating: 5,
   author: '',
@@ -42,8 +41,10 @@ const form = reactive({
   product: props.product,
 })
 
-async function addReview() {
-  console.log(form)
+async function addReview(event) {
+  const formData = new FormData(event.target);
+  let uploaded = await client.request(uploadFiles(formData));
+  form.cover = uploaded?.id
   let result = await client.request(createItem('reviews', form))
   console.log(result)
   added.value = true
@@ -72,7 +73,7 @@ const isValid = computed(() => form.author && form.content)
     .p-4.bg-light-900.dark-bg-dark-200.max-w-140(v-if="added") Thank you! Your review has been submitted. It will be published after moderation.
 
   transition(name="fade")
-    form.flex.flex-col.p-4.bg-light-900.dark-bg-dark-200.max-w-140.gap-4(v-show="add && !added" @submit.prevent.stop="addReview()")
+    form.flex.flex-col.p-4.bg-light-900.dark-bg-dark-200.max-w-140.gap-4(v-show="add && !added" @submit.prevent.stop="addReview")
       .text-lg.flex.items-center.gap-0(for="rating") Rating 
         .flex-1
         .px-2 {{ form.rating }}
@@ -95,6 +96,14 @@ const isValid = computed(() => form.author && form.content)
         textarea#form-content(
           v-model="form.content"
           rows="3"
+          placeholder="Describe your experience with the product"
+          )
+      .flex.flex-col.gap-2
+        label.text-lg(for="files") Files
+        input#files(
+          type="file"
+          name="file"
+          accept="image/*"
           placeholder="Describe your experience with the product"
           )
       .opacity-40 All reviews are manually moderated before being published.
