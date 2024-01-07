@@ -31,6 +31,12 @@ const open = ref(false)
 const add = ref(false)
 const added = ref(false)
 
+const selectedFile = ref(null);
+
+const handleFileChange = (event) => {
+  selectedFile.value = event.target.files[0];
+};
+
 const form = reactive({
   status: 'draft',
   date: new Date().toISOString().split('T')[0],
@@ -42,7 +48,10 @@ const form = reactive({
 })
 
 async function addReview(event) {
-  const formData = new FormData(event.target);
+  const formData = new FormData();
+  formData.append('folder', 'b84d5f23-aa89-498e-840d-9d34d79aa4fa');
+  formData.append('file', selectedFile.value);
+
   let uploaded = await client.request(uploadFiles(formData));
   form.cover = uploaded?.id
   let result = await client.request(createItem('reviews', form))
@@ -51,6 +60,10 @@ async function addReview(event) {
 }
 
 const isValid = computed(() => form.author && form.content)
+
+
+
+
 
 </script>
 
@@ -104,6 +117,7 @@ const isValid = computed(() => form.author && form.content)
           type="file"
           name="file"
           accept="image/*"
+          @change="handleFileChange"
           placeholder="Describe your experience with the product"
           )
       .opacity-40 All reviews are manually moderated before being published.
