@@ -74,7 +74,7 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
 <style lang="postcss">
 .markdown-body {
   p {
-    @apply max-w-120 my-4
+    @apply max-w-140 my-4
   }
 }
 

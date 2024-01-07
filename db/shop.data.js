@@ -8,7 +8,10 @@ export default {
         sort: ['sort'],
         fields: [
           '*',
-          { category: ['slug', 'title', 'products'] }
+          {
+            category: ['slug', 'title', 'products'],
+            reviews: ['*']
+          }
         ]
       })
 

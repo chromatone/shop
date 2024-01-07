@@ -12,12 +12,12 @@ const { isDark } = useData()
 			td Item
 			td.text-center Price
 			td.text-center Quantity
-			td.text-right Total
+			td.text-center Total
 		tr(v-for="(pos,id,i) in cart" :key="id")
 			td.flex-1.text-left.flex.items-center.gap-2.border-l-10(
 				:style="{borderColor:`oklch(${isDark ? 60 : 92}% .07 ${i * 360 / Object.keys(cart)?.length})`}"
 				)
-				img.max-w-20(:src="`/products/${pos.slug}.webp`")
+				img.max-w-14(:src="`/products/${pos.slug}.webp`")
 				a.cursor-pointer.no-underline.flex-auto(:href="`/${pos.category}/${pos.slug}/`" @click="open = false") {{pos.title}}
 				.i-la-file-download.text-xl.w-20(
 					v-if="pos.digital"
@@ -31,7 +31,20 @@ const { isDark } = useData()
 						.font-bold {{pos.quantity}}
 						button.cursor-pointer.text-sm.cursor-pointer.bg-light-900.bg-opacity-20.p-1.rounded-xl(@click="pos.quantity++")
 							.i-la-plus
-			td.w-6ch.text-right.font-bold ${{Number(pos.price) * Number(pos.quantity)}}
+			td.w-6ch.text-center.font-bold ${{Number(pos.price) * Number(pos.quantity)}}
+
+
+		tr(:style="{opacity: count > 1 ? 1: .3}" v-if="delivery.needed")
+			td(colspan="1")
+				.flex.gap-4
+					.text-md <b>Free</b> Holographic Chromatone sticker for <b>2 or more</b> items!
+			td FREE
+			td.text-center.font-bold {{ count >=2 ? 1 : 0 }}
+			td.relative
+				.flex.items-center.justify-center
+					.i-la-plus.absolute.-left-1.text-1rem(v-if="count>1")
+					img.h-8(src="/logo.svg")
+
 		tr(v-if="delivery.needed")
 			td.font-bold 
 				.flex.gap-2 
@@ -49,24 +62,14 @@ const { isDark } = useData()
 								:value="name")
 							.price.text-lg ${{way.price}}&nbsp;
 							.font-normal.text-left(:title="way.description") {{way.title}} 
-			td.text-right.font-bold ${{delivery?.selected?.price}}
-		tr(:style="{opacity: count > 1 ? 1: .3}" v-if="delivery.needed")
-			td(colspan="1")
-				.flex.gap-4
-					.text-md <b>Free</b> Holographic Chromatone sticker for <b>2 or more</b> items!
-			td FREE
-			td.text-center.font-bold {{ count >=2 ? 1 : 0 }}
-			td.relative
-				.flex.items-center.justify-center
-					.i-la-plus.absolute.-left-1.text-1rem(v-if="count>1")
-					img.h-8(src="/logo.svg")
+			td.text-center.font-bold {{delivery?.selected?.price>0 ? `$${delivery?.selected?.price}` : 'FREE'}}
 
 		tr(v-else)
 			td.p-2(colspan="4") All products in your cart are digital. We will send you the download link shortly.
 		tr.sticky.bottom-0
 			td.font-bold(colspan="2") Total
 			td.font-bold.text-center {{ count + (delivery.needed && count>=2 ? 1 : 0) }} items
-			td.font-bold.text-right ${{total}}
+			td.font-bold.text-center ${{total}}
 
 	.flex.gap-2.mt-2.p-2
 		button.flex.items-center.transition.font-bold.shop-button.text-xl.flex-1.hover-shadow-lg.p-4.rounded.shadow.gap-4(

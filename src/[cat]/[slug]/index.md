@@ -11,4 +11,6 @@ const { params, frontmatter: f } = useData()
 
 <!-- @content -->
 
+<product-reviews :product="f.id"></product-reviews>
+
 <shop-price class="w-full max-w-140 sticky bottom-0" v-bind="f" ></shop-price>

@@ -9,8 +9,9 @@ export default {
         '*',
         {
           category: [
-            'slug', 'title'
-          ]
+            'slug', 'title',
+          ],
+          reviews: ['*']
         }
       ]
     })

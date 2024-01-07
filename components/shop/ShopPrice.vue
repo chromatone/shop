@@ -26,16 +26,17 @@ const backgroundColor = computed(() => props.color || `oklch(${isDark.value ? 60
 </script>
 
 <template lang="pug">
-.flex.items-stretch.flex-wrap.relative.bg-light-700.dark-bg-dark-400.dark-bg-opacity-80.select-none.bg-opacity-20(
+.flex.items-stretch.flex-wrap.relative.bg-light-700.dark-bg-dark-400.dark-bg-opacity-80.select-none.bg-opacity-20.backdrop-blur-lg(
   style="font-weight: normal;"
   v-if="title",
   )
-  .tracking-widest.tabular-nums.py-4.pl-4.text-2xl.backdrop-blur-lg.font-bold(
+  .tracking-widest.tabular-nums.py-4.pl-4.text-2xl.font-bold(
     style="flex: 1 1 10px"
     ) ${{ price }}
-  .flex.gap-2.items-center.p-2.backdrop-blur-lg.leading-5(:title=" digital? 'This is a digital product. You will receive a link to download the PDF file and will have a personal licence to print it by yourself.' :'This is a physical product, that was printed on high quality materials and is sent to our customers via international post delivery.'"
-  style="flex: 100 1 50px"
-  )
+  .flex.gap-2.items-center.p-2.leading-5(
+    :title="digital ? 'This is a digital product. You will receive a link to download the PDF file and will have a personal licence to print it by yourself.' : 'This is a physical product, that was printed on high quality materials and is sent to our customers via international post delivery.'"
+    style="flex: 100 1 50px"
+    )
     .p-1.uppercase.text-3.opacity-60 {{ material?.[0] || 'VINYL' }}
 
   slot
