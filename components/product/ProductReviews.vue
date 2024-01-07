@@ -1,8 +1,6 @@
 <script setup>
 import { createDirectus, readItem, rest, createItem } from '@directus/sdk';
 import { computed, onMounted, ref } from 'vue';
-import { VueImageZoomer } from 'vue-image-zoomer'
-import 'vue-image-zoomer/dist/style.css';
 
 const props = defineProps({
   product: { type: String, default: '' },
