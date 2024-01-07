@@ -45,7 +45,7 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
   a.flex.flex-wrap.gap-2.rounded.mt-8.shadow-md.hover-shadow-lg.transition.px-2.max-w-140.mx-4(
     v-if="count && route.path != '/cart/'" 
     href="/cart/"
-    :style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .16 ${350} / .5)`}"
+    :style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .16 ${340} / .5)`}"
     )
     .px-4.relative.py-4.flex.items-center.justify-center.w-full.gap-4()
       .i-tabler-shopping-cart-check.text-xl

@@ -18,7 +18,7 @@ export const cart = useStorage('shopping-cart', {})
 
 
 export const delivery = reactive({
-	current: useStorage('delivery-way', 'regular'),
+	current: 0,
 	selected: computed(() => delivery.ways[delivery.current]),
 	needed: computed(() => {
 		let need = false

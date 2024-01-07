@@ -15,12 +15,12 @@ const { isDark } = useData()
     )
     a.flex.flex-col.items-stretch.p-4.shadow.hover-shadow-lg.transition.mx-4(
       :href="`/${category?.slug}/`"
-      :style="{backgroundColor: `oklch(${isDark ? 60 : 92}% .07 ${c*360/data?.categories.length})`}"
+      :style="{backgroundColor: `oklch(${isDark ? 60 : 92}% .05 ${c*360/data?.categories.length} / .3)`}"
       )
 
       .text-4xl.p-4.font-bold {{ category?.title }}
       .text-md.px-4.mb-4.max-w-130 {{ category?.description }}
-    .text-8xl.absolute.top-2.right-2.opacity-10.hover-opacity-80.hover-scale-110
+    .text-8xl.absolute.top-2.right-6.opacity-10.hover-opacity-80.hover-scale-110
       .i-ri-download-cloud-fill(v-if="category?.digital")
       .i-mdi-email-newsletter(v-else)
 

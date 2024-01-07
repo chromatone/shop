@@ -35,7 +35,7 @@ const { isDark } = useData()
 		tr(v-if="delivery.needed")
 			td.font-bold 
 				.flex.gap-2 
-					p Worldwide delivery
+					p Worldwide delivery 
 			td(colspan="2")
 				.flex.flex-col.gap-2
 					.flex-1(v-for="(way,name) in delivery.ways" :key="way")
@@ -48,7 +48,7 @@ const { isDark } = useData()
 								v-model="delivery.current"
 								:value="name")
 							.price.text-lg ${{way.price}}&nbsp;
-							.font-normal.text-left(:title="way.description") {{way.title}}
+							.font-normal.text-left(:title="way.description") {{way.title}} 
 			td.text-right.font-bold ${{delivery?.selected?.price}}
 		tr(:style="{opacity: count > 1 ? 1: .3}" v-if="delivery.needed")
 			td(colspan="1")
@@ -70,7 +70,7 @@ const { isDark } = useData()
 
 	.flex.gap-2.mt-2.p-2
 		button.flex.items-center.transition.font-bold.shop-button.text-xl.flex-1.hover-shadow-lg.p-4.rounded.shadow.gap-4(
-			:style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .17 ${350} / .6)`}"
+			:style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .17 ${340} / .6)`}"
 			@click="checkout()") 
 				.i-tabler-credit-card-pay
 				.flex-0 PROCEED TO CHECKOUT 

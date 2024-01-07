@@ -21,27 +21,22 @@ const router = useRouter()
 
 const { isDark } = useData()
 
-const backgroundColor = computed(() => props.color || `oklch(${isDark.value ? 60 : 92}% .07 ${props.sort * 360 / data?.products.length})`)
+const backgroundColor = computed(() => props.color || `oklch(${isDark.value ? 60 : 92}% .18 ${props.sort * 360 / data?.products.length})`)
 
 </script>
 
 <template lang="pug">
-.flex.items-stretch.flex-wrap.relative.bg-light-700.dark-bg-dark-500.select-none(
+.flex.items-stretch.flex-wrap.relative.bg-light-700.dark-bg-dark-400.dark-bg-opacity-80.select-none.bg-opacity-20(
   style="font-weight: normal;"
   v-if="title",
   )
-  .tracking-widest.tabular-nums.p-4.text-2xl.backdrop-blur-lg.font-bold(
-    style="flex: 1 1 20px"
+  .tracking-widest.tabular-nums.py-4.pl-4.text-2xl.backdrop-blur-lg.font-bold(
+    style="flex: 1 1 10px"
     ) ${{ price }}
-  .flex.gap-2.items-center.p-2.backdrop-blur-lg.text-xs(:title=" digital? 'This is a digital product. You will receive a link to download the PDF file and will have a personal licence to print it by yourself.' :'This is a physical product, that was printed on high quality materials and is sent to our customers via international post delivery.'"
-  style="flex: 100 1 80px"
+  .flex.gap-2.items-center.p-2.backdrop-blur-lg.leading-5(:title=" digital? 'This is a digital product. You will receive a link to download the PDF file and will have a personal licence to print it by yourself.' :'This is a physical product, that was printed on high quality materials and is sent to our customers via international post delivery.'"
+  style="flex: 100 1 50px"
   )
-    template(v-if="digital")
-      .i-ri-download-cloud-fill
-      .p-1 DIGITAL
-    template(v-else)
-      .i-mdi-email-newsletter
-      .p-1.uppercase {{ material?.[0] }}
+    .p-1.uppercase.text-3.opacity-60 {{ material?.[0] || 'VINYL' }}
 
   slot
   transition(name="fade" mode="out-in")
