@@ -61,10 +61,6 @@ async function addReview(event) {
 
 const isValid = computed(() => form.author && form.content)
 
-
-
-
-
 </script>
 
 <template lang='pug'>
