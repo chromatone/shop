@@ -8,3 +8,6 @@ node_modules/
 src/public/categories
 src/public/products
 dist
+stripe-hook.json
+src/ko-fi-hook.json
+src/store.md
