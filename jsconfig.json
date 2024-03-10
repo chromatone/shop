@@ -17,16 +17,9 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "isolatedModules": true,
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "declarationMap": true,
-    "declarationDir": "lib/types",
     "skipLibCheck": true,
     "strict": true,
     "allowSyntheticDefaultImports": true,
-    "types": [
-      "vite/client"
-    ]
   },
   "vueCompilerOptions": {
     "plugins": [
