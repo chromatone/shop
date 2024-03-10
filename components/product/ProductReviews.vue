@@ -49,11 +49,14 @@ const form = reactive({
 
 async function addReview(event) {
   const formData = new FormData();
-  formData.append('folder', 'b84d5f23-aa89-498e-840d-9d34d79aa4fa');
-  formData.append('file', selectedFile.value);
 
-  let uploaded = await client.request(uploadFiles(formData));
-  form.cover = uploaded?.id
+  if (selectedFile.value) {
+    formData.append('folder', 'b84d5f23-aa89-498e-840d-9d34d79aa4fa');
+    formData.append('file', selectedFile.value);
+    let uploaded = await client.request(uploadFiles(formData));
+    form.cover = uploaded?.id
+  }
+
   let result = await client.request(createItem('reviews', form))
   console.log(result)
   added.value = true

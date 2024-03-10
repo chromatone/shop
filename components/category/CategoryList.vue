@@ -18,7 +18,7 @@ const { isDark } = useData()
       :style="{backgroundColor: `oklch(${isDark ? 60 : 92}% .05 ${c*360/data?.categories.length} / .3)`}"
       )
 
-      .text-4xl.p-4.font-bold {{ category?.title }}
+      .text-6xl.p-4 {{ category?.title }}
       .text-md.px-4.mb-4.max-w-130 {{ category?.description }}
     .text-8xl.absolute.top-2.right-6.opacity-10.hover-opacity-80.hover-scale-110
       .i-ri-download-cloud-fill(v-if="category?.digital")

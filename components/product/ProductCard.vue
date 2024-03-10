@@ -38,7 +38,7 @@ const props = defineProps({
     .flex.flex-col.p-4.gap-2(style="flex: 1 1 180px"
 
       )
-      .text-2xl.font-bold.items-center.gap-2 {{ title }}
+      .text-3xl.items-center.gap-2 {{ title }}
       .text-md.leading-normal {{ description }}
 
     slot 
