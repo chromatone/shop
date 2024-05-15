@@ -1,7 +1,7 @@
 {
 	"name": "shop.chromatone.center",
 	"private": true,
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"description": "Shop for Chromatone physical and digital goods",
 	"type": "module",
 	"scripts": {
