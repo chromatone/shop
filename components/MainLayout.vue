@@ -17,13 +17,14 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
 
 <template lang="pug">
 .flex.flex-col.bg-light-500.dark-bg-dark-100.dark-text-light-500.min-h-100dvh.site.gap-0.items-stretch
-  .sticky.top-0.z-20.flex.w-full.items-center.gap-2.p-4
+  .sticky.top-2.z-20.flex.items-center.gap-2.py-2.px-4.dark-bg-dark-300.dark-bg-op-40.bg-light-300.m-2.rounded-xl.shadow.bg-op-80.backdrop-blur-lg
     a.opacity-60.hover-opacity-100.transition(href="/") shop
     a.p-0.opacity-40.hover-opacity-100.transition(href="https://chromatone.center" target="_blank") chromatone.center
     .flex-auto
     .cursor-pointer.mt-2px.opacity-30.hover-opacity-80(@click="isDark = !isDark")
       .i-la-sun(v-if="!isDark")
       .i-carbon-moon(v-else)
+
   .w-full.flex.flex-col.items-start
     .flex.items-center.gap-4.mt-6.mb-6
       a(href="/") 
@@ -47,28 +48,27 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
     href="/cart/"
     :style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .16 ${340} / .5)`}"
     )
-    .px-4.relative.py-4.flex.items-center.justify-center.w-full.gap-4()
+    .px-4.relative.py-4.flex.items-center.justify-center.w-full.gap-4
       .i-tabler-shopping-cart-check.text-xl
       .text-xl.uppercase.flex-auto.font-bold Proceed to cart
       ShopCartIcon.text-lg.left-6
 
-  .flex-auto
-  a.flex.items-center.font-bold.gap-4.items-start.ml-10.my-6(href="/")
-    img.w-10(src="/logo.svg")
-    .text-xl Chromatone
+  .flex.flex-col.bg-light-700.mt-12.dark-bg-dark-500
+    .flex.items-center.gap-4.p-4
+      a.flex.items-center.gap-4.items-start(href="/")
+        img.w-10(src="/logo.svg")
+        .text-xl.flex-1.flex.gap-2
+          .font-bold Chromatone 
+          .p-0 Shop
+      .flex-1
+      a.opacity-30.hover-opacity-80.text-sm(href="mailto:support@chromatone.center") support@chromatone.center
 
-  //- .flex.items-center.flex-wrap.p-2.mx-auto.gap-2
-    .p-1.bg-light-100 Chromatone 
-    .p-1.bg-light-100 Shop 
-    .p-1.bg-light-100(v-if="f?.category") {{ f?.category?.title }}
-    .p-1.bg-light-100 {{ f?.title }}
-  .flex.flex-wrap.gap-2.max-w-150.text-sm.justify-start.p-0.mx-8
-    a.p-1.opacity-40.hover-opacity-80.transition(
-      v-for="doc in docs" :key="doc"
-      :href="`/docs/${doc.slug}/`"
-      ) {{ doc.title }}
-  .flex.flex-wrap.gap-2.text-sm.justify-start.p-4.m-6
-    a.opacity-30.hover-opacity-80(href="mailto:support@chromatone.center") support@chromatone.center
+    .flex.flex-wrap.gap-2.text-md.justify-start.flex-1.bg-light-900.p-4.dark-bg-dark-900
+      a.p-1.opacity-40.hover-opacity-80.transition(
+        v-for="doc in docs" :key="doc"
+        :href="`/docs/${doc.slug}/`"
+        :class="{'font-bold': route.path == `/docs/${doc.slug}/`}"
+        ) {{ doc.title }}
 </template>
 
 <style lang="postcss">
