@@ -26,23 +26,21 @@ const backgroundColor = computed(() => props.color || `oklch(${isDark.value ? 60
 </script>
 
 <template lang="pug">
-.flex.items-stretch.flex-col.relative.bg-dark-200.bg-op-10.dark-bg-dark-400.dark-bg-opacity-80.select-none.backdrop-blur-lg(
+.flex.rounded-xl.items-stretch.flex-col.relative.bg-dark-200.bg-op-10.dark-bg-dark-400.dark-bg-opacity-80.select-none.backdrop-blur-lg(
   style="font-weight: normal;"
   v-if="title",
   )
   .flex
-    .tracking-widest.tabular-nums.py-4.pl-4.text-2xl.font-bold ${{ price }}
     .flex.gap-2.items-center.p-2.leading-5(
       :title="digital ? 'This is a digital product. You will receive a link to download the PDF file and will have a personal licence to print it by yourself.' : 'This is a physical product, that was printed on high quality materials and is sent to our customers via international post delivery.'"
       style="flex: 100 1 50px"
       )
       .p-1.uppercase.text-3.opacity-60 {{ material?.[0] || 'VINYL' }}
-
     slot
-  transition(name="fade" mode="out-in")
+  .flex
+    .tracking-widest.tabular-nums.py-4.pl-4.text-2xl.font-bold ${{ price }}
     .flex-auto.font-bold.transition-all.duration-300.flex.items-center.gap-1.rounded-xl.shadow.p-3.relative.cursor-pointer.flex.items-center.justify-start.m-2(
       :style="{backgroundColor}"
-
       key="add"
       @click.prevent.stop="stripe_id && !cart[stripe_id] ? addToCart(title, {id:props.stripe_id, path:route.path, ...props, category: category.slug}) : router.go('/cart/')") 
       template(v-if="stripe_id && !cart[stripe_id]")

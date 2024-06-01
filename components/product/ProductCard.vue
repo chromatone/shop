@@ -23,19 +23,18 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-.overflow-hidden.flex.flex-col.shadow.hover-shadow-lg.transition.flex-1.dark-bg-dark-300.bg-light-400.rounded(
-  :style="{backgroundColor:`oklch(${isDark ? 60 : 92}% .04 ${sort*360/data?.products.length} / .2)`}"
+.overflow-hidden.flex.flex-col.shadow.hover-shadow-lg.transition.flex-1.dark-bg-dark-300.bg-light-400.rounded-2xl.max-w-42ch.p-2(
   :href="`/${category?.slug}/${slug}/`" 
-  style=" flex: 1 1 auto" 
+  style=" flex: 1 1 220px" 
   )
-  a.flex-auto.flex.flex-wrap.items-start(
+  a.flex-auto.flex.flex-col.items-start(
 
     :href="`/${category?.slug}/${slug}/`")
-    .p-0.min-w-50.relative.max-h-70.overflow-hidden(style="flex: 1 0 240px ")
+    .p-0.min-w-50.relative.max-h-70.overflow-hidden.rounded-xl
       img(
         style="margin:0"
         :src="`/products/${slug}.webp`")
-    .flex.flex-col.p-4.gap-2(style="flex: 1 1 180px"
+    .flex.flex-col.p-4.gap-2(style="flex: 1 1"
 
       )
       .text-2xl.items-center.gap-2 {{ title }}
@@ -43,6 +42,7 @@ const props = defineProps({
 
     slot 
   shop-price.w-full(
+    :style="{backgroundColor:`oklch(${isDark ? 60 : 92}% .04 ${sort*360/data?.products.length} / .2)`}"
     v-bind="props"
     :color="`oklch(${isDark ? 60 : 92}% .12 ${sort*360/data?.products.length})`"
     )
