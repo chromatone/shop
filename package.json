@@ -12,7 +12,6 @@
 	"engines": {
 		"node": "20.x"
 	},
-	"packageManager": "pnpm@9.1.4",
 	"keywords": [
 		"shop",
 		"directus",
@@ -36,6 +35,6 @@
 		"unocss": "^0.60.3",
 		"unplugin-auto-import": "^0.17.6",
 		"unplugin-vue-components": "^0.27.0",
-		"vitepress": "^1.2.2"
+		"vitepress": "1.2.0"
 	}
 }
