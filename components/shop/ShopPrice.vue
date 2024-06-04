@@ -39,7 +39,7 @@ const backgroundColor = computed(() => props.color || `oklch(${isDark.value ? 60
     slot
   .flex
     .tracking-widest.tabular-nums.py-4.pl-4.text-2xl.font-bold ${{ price }}
-    .flex-auto.font-bold.transition-all.duration-300.flex.items-center.gap-1.rounded-xl.shadow.p-3.relative.cursor-pointer.flex.items-center.justify-start.m-2(
+    .flex-auto.font-bold.transition-all.duration-300.flex.items-center.gap-1.rounded-xl.shadow.p-3.relative.cursor-pointer.flex.items-center.justify-start.m-2.mb-4(
       :style="{backgroundColor}"
       key="add"
       @click.prevent.stop="stripe_id && !cart[stripe_id] ? addToCart(title, {id:props.stripe_id, path:route.path, ...props, category: category.slug}) : router.go('/cart/')") 

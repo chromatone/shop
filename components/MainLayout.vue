@@ -35,19 +35,22 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
           a.text-md.opacity-40(:href="`/${f?.category?.slug || f?.page_type}/`") {{ f?.category?.title || f?.page_type }}
         .text-3xl {{ f.title }}
 
-    .p-6.text-18px.border-l-16.bg-light-200.dark-bg-dark-300.shadow-sm.mx-4.max-w-150(
+    .rounded-xl.p-6.text-18px.bg-light-200.dark-bg-dark-300.shadow-sm.mx-4.max-w-150(
       v-if="f?.description"
-      :style="{borderColor:pageColor}"
     ) {{ f.description }}
 
-    .w-full.flex.flex-col.markdown-body.mt-8.px-4
+    .w-full.flex.flex-col.markdown-body.mt-8.px-4.text-lg
       content
 
-  a.flex.flex-wrap.gap-2.rounded.mt-8.shadow-md.hover-shadow-lg.transition.px-2.max-w-140.mx-4(
-    v-if="count && route.path != '/cart/'" 
-    href="/cart/"
-    :style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .16 ${340} / .5)`}"
-    )
+
+
+
+
+  a.flex.flex-wrap.gap-2.rounded-xl.mt-8.shadow-md.hover-shadow-lg.transition.px-2.max-w-140.mx-4(
+  v-if="count && route.path != '/cart/'" 
+  href="/cart/"
+  :style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .16 ${340} / .5)`}"
+  )
     .px-4.relative.py-4.flex.items-center.justify-center.w-full.gap-4
       .i-tabler-shopping-cart-check.text-xl
       .text-xl.uppercase.flex-auto.font-bold Proceed to cart
@@ -61,7 +64,9 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
           .font-bold Chromatone 
           .p-0 Shop
       .flex-1
-      a.opacity-30.hover-opacity-80.text-sm(href="mailto:support@chromatone.center") support@chromatone.center
+      a.opacity-30.hover-opacity-80.text-sm(href="mailto:support@chromatone.center") Contact us
+
+    category-list-small.w-full
 
     .flex.flex-wrap.gap-2.text-md.justify-start.flex-1.bg-light-900.p-4.dark-bg-dark-900
       a.p-1.opacity-40.hover-opacity-80.transition(
@@ -76,6 +81,10 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
   p {
     @apply max-w-140 my-4
   }
+}
+
+.markdown-body p>img {
+  @apply rounded-2xl my-16;
 }
 
 .markdown-body {

@@ -6,3 +6,4 @@ title: Category
 <!-- @content -->
 
 <ProductList />
+

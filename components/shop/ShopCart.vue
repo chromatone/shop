@@ -7,7 +7,7 @@ const { isDark } = useData()
 <template lang="pug">
 .flex.flex-col.tabular-nums.max-w-150.sticky.bottom-0.bg-light-400.dark-bg-dark-200.w-full.items-stretch(v-if="cart && Object.keys(cart).length > 0")
 
-	table.text-left.m-0.mb-4.w-full
+	table.text-left.m-0.mb-4.w-full.rounded-xl.overflow-hidden
 		tr.text-md.sticky.top-0.z-20.font-bold
 			td Item
 			td.text-center Price
@@ -72,7 +72,7 @@ const { isDark } = useData()
 			td.font-bold.text-center ${{total}}
 
 	.flex.gap-2.mt-2.p-2
-		button.flex.items-center.transition.font-bold.shop-button.text-xl.flex-1.hover-shadow-lg.p-4.rounded.shadow.gap-4(
+		button.flex.items-center.transition.font-bold.shop-button.text-xl.flex-1.hover-shadow-lg.p-4.rounded-2xl.shadow.gap-4(
 			:style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .17 ${340} / .6)`}"
 			@click="checkout()") 
 				.i-tabler-credit-card-pay
