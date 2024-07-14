@@ -25,6 +25,7 @@ const { isDark } = useData()
 
     .flex.flex-wrap.gap-4
       ProductCard(
+        style=" flex: 1 1 280px" 
         v-for="product in [...category.products].sort((a,b)=>a.sort>b.sort ? 1 : -1)", :key="product", v-bind="product"
         )
 </template>
