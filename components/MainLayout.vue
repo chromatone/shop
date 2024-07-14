@@ -20,10 +20,17 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
   .sticky.top-2.z-20.flex.items-center.gap-2.py-2.px-4.dark-bg-dark-300.dark-bg-op-40.bg-light-300.m-2.rounded-xl.shadow.bg-op-80.backdrop-blur-lg
     a.opacity-60.hover-opacity-100.transition(href="/") shop
     a.p-0.opacity-40.hover-opacity-100.transition(href="https://chromatone.center" target="_blank") chromatone.center
-    .flex-auto
     .cursor-pointer.mt-2px.opacity-30.hover-opacity-80(@click="isDark = !isDark")
       .i-la-sun(v-if="!isDark")
       .i-carbon-moon(v-else)
+    .flex-auto
+    a.flex.flex-wrap.items-center.gap-2(
+      :style="{color: `oklch(${isDark ? 90 : 50}% .17 ${130} / .6)`}"
+      v-if="count && route.path != '/cart/'" 
+      href="/cart/")
+      .i-tabler-shopping-cart-check.text-2xl
+      ShopCartIcon.text-lg
+
 
   .w-full.flex.flex-col.items-start
     .flex.items-center.gap-4.mt-6.mb-6
@@ -43,19 +50,6 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
       content
 
 
-
-
-
-  a.flex.flex-wrap.gap-2.rounded-xl.mt-8.shadow-md.hover-shadow-lg.transition.px-2.max-w-140.mx-4(
-  v-if="count && route.path != '/cart/'" 
-  href="/cart/"
-  :style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .16 ${340} / .5)`}"
-  )
-    .px-4.relative.py-4.flex.items-center.justify-center.w-full.gap-4
-      .i-tabler-shopping-cart-check.text-xl
-      .text-xl.uppercase.flex-auto.font-bold Proceed to cart
-      ShopCartIcon.text-lg.left-6
-
   .flex.flex-col.bg-light-700.mt-12.dark-bg-dark-500
     .flex.items-center.gap-4.p-4
       a.flex.items-center.gap-4.items-start(href="/")
@@ -63,6 +57,13 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
         .text-xl.flex-1.flex.gap-2
           .font-bold Chromatone 
           .p-0 Shop
+        a.flex.flex-wrap.items-center.gap-3.transition.bg-light-300.dark-bg-dark-100.shadow-xl.rounded-xl.p-2(
+          :style="{color: `oklch(${isDark ? 90 : 50}% .17 ${130} / .6)`}"
+          v-if="count && route.path != '/cart/'" 
+          href="/cart/")
+          .i-tabler-shopping-cart-check.text-2xl
+          .text-xl Your cart
+          ShopCartIcon.text-lg
       .flex-1
       a.opacity-30.hover-opacity-80.text-sm(href="mailto:support@chromatone.center") Contact us
 

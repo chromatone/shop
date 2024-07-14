@@ -72,8 +72,8 @@ const { isDark } = useData()
 			td.font-bold.text-center ${{total}}
 
 	.flex.gap-2.mt-2.p-2
-		button.flex.items-center.transition.font-bold.shop-button.text-xl.flex-1.hover-shadow-lg.p-4.rounded-2xl.shadow.gap-4(
-			:style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .17 ${340} / .6)`}"
+		button.flex.items-center.transition.font-bold.text-xl.flex-1.hover-shadow-lg.p-4.rounded-2xl.shadow.gap-4(
+			:style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .17 ${130} / .6)`}"
 			@click="checkout()") 
 				.i-tabler-credit-card-pay
 				.flex-0 PROCEED TO CHECKOUT 

@@ -12,7 +12,7 @@
 	"engines": {
 		"node": "20.x"
 	},
-	"packageManager": "pnpm@9.1.4",
+	"packageManager": "pnpm@9.5.0",
 	"keywords": [
 		"shop",
 		"directus",
@@ -21,21 +21,21 @@
 	"author": "davay42",
 	"license": "MIT",
 	"dependencies": {
-		"@stripe/stripe-js": "^3.4.1",
-		"@unocss/reset": "^0.60.3",
-		"@vueuse/core": "^10.10.0",
-		"@vueuse/math": "^10.10.0",
-		"vue": "^3.4.27"
+		"@stripe/stripe-js": "^4.1.0",
+		"@unocss/reset": "^0.61.3",
+		"@vueuse/core": "^10.11.0",
+		"@vueuse/math": "^10.11.0",
+		"vue": "^3.4.31"
 	},
 	"devDependencies": {
-		"@directus/sdk": "^16.0.2",
-		"@unocss/extractor-pug": "^0.60.3",
-		"@vue/language-plugin-pug": "^2.0.19",
+		"@directus/sdk": "^16.1.1",
+		"@unocss/extractor-pug": "^0.61.3",
+		"@vue/language-plugin-pug": "^2.0.26",
 		"image-downloader": "^4.3.0",
 		"pug": "^3.0.3",
-		"unocss": "^0.60.3",
-		"unplugin-auto-import": "^0.17.6",
-		"unplugin-vue-components": "^0.27.0",
+		"unocss": "^0.61.3",
+		"unplugin-auto-import": "^0.18.0",
+		"unplugin-vue-components": "^0.27.2",
 		"vitepress": "1.2.0"
 	}
 }
