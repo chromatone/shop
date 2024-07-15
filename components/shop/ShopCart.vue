@@ -73,8 +73,8 @@ const { isDark } = useData()
 			td.font-bold.text-center ${{total}}
 
 	.flex.gap-2.mt-2.p-2
-		button.flex.items-center.transition.font-bold.text-xl.flex-1.hover-shadow-lg.p-4.rounded-2xl.shadow.gap-4(
-			:style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .17 ${130} / .8)`}"
+		button.flex.items-center.transition.font-bold.text-xl.flex-1.hover-shadow-lg.p-4.rounded-2xl.shadow.gap-4.bg-dark-400.text-light.dark-bg-light-900.dark-text-dark.border-1.font-normal.hover-bg-dark-100.hover-dark-bg-light-400(
+			:style="{backgroundcolor: `oklch(${isDark ? 60 : 80}% .17 ${130} / .8)`}"
 			@click="checkout()") 
 				.i-tabler-credit-card-pay
 				.flex-0 PROCEED TO CHECKOUT 
@@ -110,7 +110,7 @@ tr:nth-child(2n+1) {
 }
 
 button.q {
-	@apply cursor-pointer text-sm bg-gray-900 bg-opacity-20 p-1 rounded-2xl hover-bg-gray-100 shadow hover-shadow-lg border-2px dark-hover-bg-dark-900;
+	@apply cursor-pointer text-sm bg-gray-800 text-light p-1 rounded-2xl hover-bg-gray-600 shadow hover-shadow-lg border-2px dark-hover-bg-dark-900;
 }
 </style>
 

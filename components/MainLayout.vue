@@ -46,7 +46,7 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
       v-if="f?.description"
     ) {{ f.description }}
 
-    .w-full.flex.flex-col.markdown-body.mt-8.px-4.text-lg
+    .w-full.flex.flex-col.markdown-body.mt-8.px-4.text-lg.mb-12
       content
 
     a.mx-auto.flex.flex-wrap.items-center.gap-3.transition.shadow-xl.rounded-xl.p-2.bg-dark-400.dark-bg-light-800.dark-text-dark.text-light(
