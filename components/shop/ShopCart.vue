@@ -9,7 +9,7 @@ const { isDark } = useData()
 
 	table.text-left.m-0.mb-4.w-full.rounded-xl.overflow-hidden
 		tr.text-md.sticky.top-0.z-20.font-bold
-			td Item
+			td Items in your pack
 			td.text-center Price
 			td.text-center Quantity
 			td.text-center Total
@@ -74,7 +74,7 @@ const { isDark } = useData()
 
 	.flex.gap-2.mt-2.p-2
 		button.flex.items-center.transition.font-bold.text-xl.flex-1.hover-shadow-lg.p-4.rounded-2xl.shadow.gap-4(
-			:style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .17 ${130} / .6)`}"
+			:style="{backgroundColor: `oklch(${isDark ? 60 : 80}% .17 ${130} / .8)`}"
 			@click="checkout()") 
 				.i-tabler-credit-card-pay
 				.flex-0 PROCEED TO CHECKOUT 

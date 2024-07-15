@@ -24,7 +24,7 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
       .i-la-sun(v-if="!isDark")
       .i-carbon-moon(v-else)
     .flex-auto
-    a.flex.flex-wrap.items-center.gap-2.bg-dark-400.px-2.py-1.rounded-xl.shadow.hover-shadow-lg.text-light-800(
+    a.flex.items-center.gap-2.bg-dark-400.px-2.py-1.rounded-xl.shadow.hover-shadow-lg.text-light-800.dark-bg-light-800.dark-text-dark(
       :style="{backgroundcolor: `oklch(${isDark ? 90 : 80}% .17 ${130} / .9)`}"
       v-if="count && route.path != '/pack/'" 
       href="/pack/")
@@ -49,15 +49,15 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
     .w-full.flex.flex-col.markdown-body.mt-8.px-4.text-lg
       content
 
-    a.mx-auto.flex.flex-wrap.items-center.gap-3.transition.shadow-xl.rounded-xl.p-2.bg-dark-400.dark-bg-light-800.dark-text-dark(
+    a.mx-auto.flex.flex-wrap.items-center.gap-3.transition.shadow-xl.rounded-xl.p-2.bg-dark-400.dark-bg-light-800.dark-text-dark.text-light(
       :style="{backgroundcolor: `oklch(${isDark ? 90 : 80}% .17 ${130} / .9)`}"
       v-if="count && route.path != '/pack/'" 
       href="/pack/")
       .i-ph-envelope-open.text-2xl
-      .text-xl YOUR PACK
+      .text-xl PROCEED TO PACK
       ShopCartIcon.text-lg
 
-  .flex.flex-col.bg-light-700.mt-12.dark-bg-dark-500
+  .flex.flex-col.bg-light-700.mt-12.dark-bg-dark-500(v-if="f?.layout!='pure'")
     .flex.items-center.gap-4.p-4
       a.flex.items-center.gap-4.items-start(href="/")
         img.w-10(src="/logo.svg")
