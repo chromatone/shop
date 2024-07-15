@@ -23,7 +23,7 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-.overflow-hidden.flex.flex-col.shadow.hover-shadow-lg.transition.flex-1.dark-bg-dark-300.bg-light-400.rounded-2xl.max-w-42ch.p-2(
+.overflow-hidden.flex.flex-col.shadow.hover-shadow-lg.transition.flex-1.dark-bg-dark-300.bg-light-400.rounded-2xl.max-w-42ch.p-2.border-2px(
   :href="`/${category?.slug}/${slug}/`" 
   )
   a.flex-auto.flex.flex-col.items-start(

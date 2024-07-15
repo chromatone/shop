@@ -39,16 +39,16 @@ const backgroundColor = computed(() => props.color || `oklch(${isDark.value ? 60
     slot
   .flex
     .tracking-widest.tabular-nums.py-4.pl-4.text-2xl.font-bold ${{ price }}
-    .flex-auto.font-bold.transition-all.duration-300.flex.items-center.gap-1.rounded-xl.shadow.p-3.relative.cursor-pointer.flex.items-center.justify-start.m-2.mb-4(
+    .flex-auto.font-bold.transition-all.duration-300.flex.items-center.gap-2.rounded-xl.shadow.p-3.relative.cursor-pointer.flex.items-center.justify-start.m-2.mb-4(
       :style="{backgroundColor}"
       key="add"
-      @click.prevent.stop="stripe_id && !cart[stripe_id] ? addToCart(title, {id:props.stripe_id, path:route.path, ...props, category: category.slug}) : router.go('/cart/')") 
+      @click.prevent.stop="stripe_id && !cart[stripe_id] ? addToCart(title, {id:props.stripe_id, path:route.path, ...props, category: category.slug}) : router.go('/pack/')") 
       template(v-if="stripe_id && !cart[stripe_id]")
-        .i-la-shopping-bag.text-2xl
-        .p-0.uppercase.whitespace-nowrap Add to cart
+        .i-ph-envelope-open.text-2xl
+        .p-0.uppercase.whitespace-nowrap Add To Pack
       template(v-else)
         .i-la-check.text-2xl
-        .p-0.uppercase.flex-auto In cart
+        .p-0.uppercase.flex-auto In Your Pack
         shop-cart-icon(:id="stripe_id")
       
 </template>

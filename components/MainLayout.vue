@@ -24,13 +24,13 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
       .i-la-sun(v-if="!isDark")
       .i-carbon-moon(v-else)
     .flex-auto
-    a.flex.flex-wrap.items-center.gap-2(
-      :style="{color: `oklch(${isDark ? 90 : 50}% .17 ${130} / .6)`}"
-      v-if="count && route.path != '/cart/'" 
-      href="/cart/")
-      .i-tabler-shopping-cart-check.text-2xl
+    a.flex.flex-wrap.items-center.gap-2.bg-dark-400.px-2.py-1.rounded-xl.shadow.hover-shadow-lg.text-light-800(
+      :style="{backgroundcolor: `oklch(${isDark ? 90 : 80}% .17 ${130} / .9)`}"
+      v-if="count && route.path != '/pack/'" 
+      href="/pack/")
+      .i-ph-envelope-open.text-xl
+      .text-md YOUR PACK
       ShopCartIcon.text-lg
-
 
   .w-full.flex.flex-col.items-start
     .flex.items-center.gap-4.mt-6.mb-6
@@ -49,6 +49,13 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
     .w-full.flex.flex-col.markdown-body.mt-8.px-4.text-lg
       content
 
+    a.mx-auto.flex.flex-wrap.items-center.gap-3.transition.shadow-xl.rounded-xl.p-2.bg-dark-400.dark-bg-light-800.dark-text-dark(
+      :style="{backgroundcolor: `oklch(${isDark ? 90 : 80}% .17 ${130} / .9)`}"
+      v-if="count && route.path != '/pack/'" 
+      href="/pack/")
+      .i-ph-envelope-open.text-2xl
+      .text-xl YOUR PACK
+      ShopCartIcon.text-lg
 
   .flex.flex-col.bg-light-700.mt-12.dark-bg-dark-500
     .flex.items-center.gap-4.p-4
@@ -57,15 +64,8 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
         .text-xl.flex-1.flex.gap-2
           .font-bold Chromatone 
           .p-0 Shop
-        a.flex.flex-wrap.items-center.gap-3.transition.bg-light-300.dark-bg-dark-100.shadow-xl.rounded-xl.p-2(
-          :style="{color: `oklch(${isDark ? 90 : 50}% .17 ${130} / .6)`}"
-          v-if="count && route.path != '/cart/'" 
-          href="/cart/")
-          .i-tabler-shopping-cart-check.text-2xl
-          .text-xl Your cart
-          ShopCartIcon.text-lg
       .flex-1
-      a.opacity-30.hover-opacity-80.text-sm(href="mailto:support@chromatone.center") Contact us
+      a.opacity-30.hover-opacity-80.text-sm(href="mailto:support@chromatone.center") Contact Us
 
     category-list-small.w-full
 

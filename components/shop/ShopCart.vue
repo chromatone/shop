@@ -26,10 +26,10 @@ const { isDark } = useData()
 			td
 				.flex.justify-between.items-center
 					.flex.gap-2.items-center.flex-1.justify-center
-						button.cursor-pointer.text-sm.cursor-pointer.bg-light-900.bg-opacity-20.p-1.rounded-xl(@click="pos.quantity--")
+						button.q(@click="pos.quantity--")
 							.i-la-minus
 						.font-bold {{pos.quantity}}
-						button.cursor-pointer.text-sm.cursor-pointer.bg-light-900.bg-opacity-20.p-1.rounded-xl(@click="pos.quantity++")
+						button.q(@click="pos.quantity++")
 							.i-la-plus
 			td.w-6ch.text-center.font-bold ${{Number(pos.price) * Number(pos.quantity)}}
 
@@ -47,7 +47,8 @@ const { isDark } = useData()
 
 		tr(v-if="delivery.needed")
 			td.font-bold 
-				.flex.gap-2 
+				.flex.gap-2.items-center
+					.i-ph-envelope.text-xl
 					p Worldwide delivery 
 			td(colspan="2")
 				.flex.flex-col.gap-2
@@ -106,6 +107,10 @@ tr:nth-child(2n+1) {
 
 .active .price {
 	@apply font-bold;
+}
+
+button.q {
+	@apply cursor-pointer text-sm bg-gray-900 bg-opacity-20 p-1 rounded-2xl hover-bg-gray-100 shadow hover-shadow-lg border-2px dark-hover-bg-dark-900;
 }
 </style>
 
