@@ -35,11 +35,11 @@ const props = defineProps({
         style="margin:0"
         :src="`/products/${slug}.webp`")
   .flex.flex-col.p-4.gap-2(style="flex: 1 1 300px")
-    a(:href="`/${category?.slug}/${slug}/`")
+    a.flex.flex-col.gap-2(:href="`/${category?.slug}/${slug}/`")
       .text-2xl.items-center.gap-2 {{ title }}
       .text-md.leading-normal {{ description }}
       slot 
-      .flex-1
+    .flex-1
     shop-price.w-full(
       :style="{ backgroundColor: `oklch(${isDark ? 60 : 92}% .04 ${sort * 360 / data?.products.length} / .2)` }"
       v-bind="props"
