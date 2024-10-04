@@ -21,7 +21,7 @@ const router = useRouter()
 
 const { isDark } = useData()
 
-const backgroundColor = computed(() => props.color || `oklch(${isDark.value ? 60 : 92}% .18 ${props.sort * 360 / data?.products.length})`)
+const backgroundColor = computed(() => props.color || `oklch(${isDark.value ? 60 : 82}% .18 ${props.sort * 360 / data?.products.length})`)
 
 </script>
 
@@ -31,7 +31,7 @@ const backgroundColor = computed(() => props.color || `oklch(${isDark.value ? 60
   v-if="title",
   )
   .flex
-    .flex.gap-2.items-center.p-2.leading-5(
+    .flex.gap-2.items-center.p-2(
       :title="digital ? 'This is a digital product. You will receive a link to download the PDF file and will have a personal licence to print it by yourself.' : 'This is a physical product, that was printed on high quality materials and is sent to our customers via international post delivery.'"
       style="flex: 100 1 50px"
       )
@@ -40,15 +40,15 @@ const backgroundColor = computed(() => props.color || `oklch(${isDark.value ? 60
   .flex
     .tracking-widest.tabular-nums.py-4.pl-4.text-2xl.font-bold ${{ price }}
     .flex-auto.font-bold.transition-all.duration-300.flex.items-center.gap-2.rounded-xl.shadow.p-3.relative.cursor-pointer.flex.items-center.justify-start.m-2.mb-4(
-      :style="{backgroundColor}"
+      :style="{ backgroundColor }"
       key="add"
-      @click.prevent.stop="stripe_id && !cart[stripe_id] ? addToCart(title, {id:props.stripe_id, path:route.path, ...props, category: category.slug}) : router.go('/pack/')") 
+      @click.prevent.stop="stripe_id && !cart[stripe_id] ? addToCart(title, { id: props.stripe_id, path: route.path, ...props, category: category.slug }) : router.go('/cart/')") 
       template(v-if="stripe_id && !cart[stripe_id]")
         .i-ph-envelope-open.text-2xl
-        .p-0.uppercase.whitespace-nowrap Add To Pack
+        .p-0.uppercase.whitespace-nowrap Add To Cart
       template(v-else)
         .i-la-check.text-2xl
-        .p-0.uppercase.flex-auto In Your Pack
+        .p-0.uppercase.flex-auto In Your Cart
         shop-cart-icon(:id="stripe_id")
       
 </template>

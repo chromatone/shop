@@ -51,7 +51,7 @@ export default defineConfig({
     ],
     nav: [
       { text: 'Chromatone', link: 'https://chromatone.center' },
-      { text: 'Pack', link: '/pack/' },
+      { text: 'Cart', link: '/cart/' },
     ],
   },
   head: [

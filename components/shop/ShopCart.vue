@@ -8,73 +8,75 @@ const { isDark } = useData()
 .flex.flex-col.tabular-nums.max-w-150.sticky.bottom-0.bg-light-400.dark-bg-dark-200.w-full.items-stretch(v-if="cart && Object.keys(cart).length > 0")
 
 	table.text-left.m-0.mb-4.w-full.rounded-xl.overflow-hidden
-		tr.text-md.sticky.top-0.z-20.font-bold
-			td Items in your pack
-			td.text-center Price
-			td.text-center Quantity
-			td.text-center Total
-		tr(v-for="(pos,id,i) in cart" :key="id")
-			td.flex-1.text-left.flex.items-center.gap-2.border-l-10(
-				:style="{borderColor:`oklch(${isDark ? 60 : 92}% .07 ${i * 360 / Object.keys(cart)?.length})`}"
-				)
-				img.max-w-14(:src="`/products/${pos.slug}.webp`")
-				a.cursor-pointer.no-underline.flex-auto(:href="`/${pos.category}/${pos.slug}/`" @click="open = false") {{pos.title}}
-				.i-la-file-download.text-xl.w-20(
-					v-if="pos.digital"
+		thead
+			tr.text-md.sticky.top-0.z-20.font-bold
+				td Items in your cart
+				td.text-center Price
+				td.text-center Quantity
+				td.text-center Total
+		tbody
+			tr(v-for="(pos, id, i) in cart" :key="id")
+				td.flex-1.text-left.flex.items-center.gap-2.border-l-10(
+					:style="{ borderColor: `oklch(${isDark ? 60 : 92}% .07 ${i * 360 / Object.keys(cart)?.length})` }"
 					)
-			td.text-center ${{pos.price}} 
-			td
-				.flex.justify-between.items-center
-					.flex.gap-2.items-center.flex-1.justify-center
-						button.q(@click="pos.quantity--")
-							.i-la-minus
-						.font-bold {{pos.quantity}}
-						button.q(@click="pos.quantity++")
-							.i-la-plus
-			td.w-6ch.text-center.font-bold ${{Number(pos.price) * Number(pos.quantity)}}
+					img.max-w-14(:src="`/products/${pos.slug}.webp`")
+					a.cursor-pointer.no-underline.flex-auto(:href="`/${pos.category}/${pos.slug}/`" @click="open = false") {{ pos.title }}
+					.i-la-file-download.text-xl.w-20(
+						v-if="pos.digital"
+						)
+				td.text-center ${{ pos.price }} 
+				td
+					.flex.justify-between.items-center
+						.flex.gap-2.items-center.flex-1.justify-center
+							button.q(@click="pos.quantity--")
+								.i-la-minus
+							.font-bold {{ pos.quantity }}
+							button.q(@click="pos.quantity++")
+								.i-la-plus
+				td.w-6ch.text-center.font-bold ${{ Number(pos.price) * Number(pos.quantity) }}
 
 
-		tr(:style="{opacity: count > 1 ? 1: .3}" v-if="delivery.needed")
-			td(colspan="1")
-				.flex.gap-4
-					.text-md <b>Free</b> Holographic Chromatone sticker for <b>2 or more</b> items!
-			td FREE
-			td.text-center.font-bold {{ count >=2 ? 1 : 0 }}
-			td.relative
-				.flex.items-center.justify-center
-					.i-la-plus.absolute.-left-1.text-1rem(v-if="count>1")
-					img.h-8(src="/logo.svg")
+			tr(:style="{ opacity: count > 1 ? 1 : .3 }" v-if="delivery.needed")
+				td(colspan="1")
+					.flex.gap-4
+						.text-md <b>Free</b> Holographic Chromatone sticker for <b>2 or more</b> items!
+				td FREE
+				td.text-center.font-bold {{ count >= 2 ? 1 : 0 }}
+				td.relative
+					.flex.items-center.justify-center
+						.i-la-plus.absolute.-left-1.text-1rem(v-if="count > 1")
+						img.h-8(src="/logo.svg")
 
-		tr(v-if="delivery.needed")
-			td.font-bold 
-				.flex.gap-2.items-center
-					.i-ph-envelope.text-xl
-					p Worldwide delivery 
-			td(colspan="2")
-				.flex.flex-col.gap-2
-					.flex-1(v-for="(way,name) in delivery.ways" :key="way")
-						label.w-full.px-2.pt-1.pb-2.border-1.rounded-lg.flex.items-center.border-dark-100.border-opacity-40.transition.cursor-pointer.gap-1.relative(
-							:class="{active:delivery.current == name}"
-							)
-							input.hidden(
-								type="radio" 
-								name="delivery" 
-								v-model="delivery.current"
-								:value="name")
-							.price.text-lg ${{way.price}}&nbsp;
-							.font-normal.text-left(:title="way.description") {{way.title}} 
-			td.text-center.font-bold {{delivery?.selected?.price>0 ? `$${delivery?.selected?.price}` : 'FREE'}}
+			tr(v-if="delivery.needed")
+				td.font-bold 
+					.flex.gap-2.items-center
+						.i-ph-envelope.text-xl
+						p Worldwide delivery 
+				td(colspan="2")
+					.flex.flex-col.gap-2
+						.flex-1(v-for="(way, name) in delivery.ways" :key="way")
+							label.w-full.px-2.pt-1.pb-2.border-1.rounded-lg.flex.items-center.border-dark-100.border-opacity-40.transition.cursor-pointer.gap-1.relative(
+								:class="{ active: delivery.current == name }"
+								)
+								input.hidden(
+									type="radio" 
+									name="delivery" 
+									v-model="delivery.current"
+									:value="name")
+								.price.text-lg ${{ way.price }}&nbsp;
+								.font-normal.text-left(:title="way.description") {{ way.title }} 
+				td.text-center.font-bold {{ delivery?.selected?.price > 0 ? `$${delivery?.selected?.price}` : 'FREE' }}
 
-		tr(v-else)
-			td.p-2(colspan="4") All products in your cart are digital. We will send you the download link shortly.
-		tr.sticky.bottom-0
-			td.font-bold(colspan="2") Total
-			td.font-bold.text-center {{ count + (delivery.needed && count>=2 ? 1 : 0) }} items
-			td.font-bold.text-center ${{total}}
+			tr(v-else)
+				td.p-2(colspan="4") All products in your cart are digital. We will send you the download link shortly.
+			tr.sticky.bottom-0
+				td.font-bold(colspan="2") Total
+				td.font-bold.text-center {{ count + (delivery.needed && count >= 2 ? 1 : 0) }} items
+				td.font-bold.text-center ${{ total }}
 
 	.flex.gap-2.mt-2.p-2
-		button.flex.items-center.transition.font-bold.text-xl.flex-1.hover-shadow-lg.p-4.rounded-2xl.shadow.gap-4.bg-dark-400.text-light.dark-bg-light-900.dark-text-dark.border-1.font-normal.hover-bg-dark-100.hover-dark-bg-light-400(
-			:style="{backgroundcolor: `oklch(${isDark ? 60 : 80}% .17 ${130} / .8)`}"
+		button.flex.items-center.transition.font-bold.text-xl.flex-1.hover-shadow-lg.p-4.rounded-2xl.shadow.gap-4.bg-stone-700.text-light.dark-bg-stone-300.dark-text-dark.border-1.font-normal.hover-bg-stone-900.hover-dark-bg-light-400(
+			:style="{ backgroundcolor: `oklch(${isDark ? 60 : 80}% .17 ${130} / .8)` }"
 			@click="checkout()") 
 				.i-tabler-credit-card-pay
 				.flex-0 PROCEED TO CHECKOUT 
@@ -110,7 +112,7 @@ tr:nth-child(2n+1) {
 }
 
 button.q {
-	@apply cursor-pointer text-sm bg-gray-800 text-light p-1 rounded-2xl hover-bg-gray-600 shadow hover-shadow-lg border-2px dark-hover-bg-dark-900;
+	@apply cursor-pointer text-sm bg-stone-500 text-light p-1 rounded-2xl hover-bg-stone-600 shadow hover-shadow-lg border-2px dark-hover-bg-dark-900;
 }
 </style>
 

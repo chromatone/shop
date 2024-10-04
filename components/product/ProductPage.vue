@@ -7,7 +7,5 @@ const { params, frontmatter: f } = useData()
   //- a.text-2xl.bg-light-900.dark-bg-dark-300.py-2.px-4.rounded(:href="`/${f.category.slug}/`") {{ f.category.title }}
   img(:src="`/products/${f.slug}.webp`")
   slot 
-  shop-price.w-full.sticky.bottom-0(
-    v-bind="f"
-    )
+  shop-price.sticky.bottom-4.right-4(    v-bind="f"    )
 </template>

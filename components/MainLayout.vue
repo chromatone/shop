@@ -24,12 +24,12 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
       .i-la-sun(v-if="!isDark")
       .i-carbon-moon(v-else)
     .flex-auto
-    a.flex.items-center.gap-2.bg-dark-400.px-2.py-1.rounded-xl.shadow.hover-shadow-lg.text-light-800.dark-bg-light-800.dark-text-dark(
-      :style="{backgroundcolor: `oklch(${isDark ? 90 : 80}% .17 ${130} / .9)`}"
-      v-if="count && route.path != '/pack/'" 
-      href="/pack/")
+    a.flex.items-center.gap-2.bg-stone-600.px-2.py-1.rounded-xl.shadow.hover-shadow-lg.text-light-800.dark-bg-light-800.dark-text-dark(
+      :style="{ backgroundcolor: `oklch(${isDark ? 90 : 80}% .17 ${130} / .9)` }"
+      v-if="count && route.path != '/cart/'" 
+      href="/cart/")
       .i-ph-envelope-open.text-xl
-      .text-md YOUR PACK
+      .text-md YOUR CART
       ShopCartIcon.text-lg
 
   .w-full.flex.flex-col.items-start
@@ -49,15 +49,15 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
     .w-full.flex.flex-col.markdown-body.mt-8.px-4.text-lg.mb-12
       content
 
-    a.mx-auto.flex.flex-wrap.items-center.gap-3.transition.shadow-xl.rounded-xl.p-2.bg-dark-400.dark-bg-light-800.dark-text-dark.text-light(
-      :style="{backgroundcolor: `oklch(${isDark ? 90 : 80}% .17 ${130} / .9)`}"
-      v-if="count && route.path != '/pack/'" 
-      href="/pack/")
+    a.mx-auto.flex.flex-wrap.items-center.gap-3.transition.shadow-xl.rounded-xl.p-2.bg-stone-700.dark-bg-light-800.dark-text-dark.text-light(
+      :style="{ backgroundcolor: `oklch(${isDark ? 90 : 80}% .17 ${130} / .9)` }"
+      v-if="count && route.path != '/cart/'" 
+      href="/cart/")
       .i-ph-envelope-open.text-2xl
-      .text-xl PROCEED TO PACK
+      .text-xl PROCEED TO CART
       ShopCartIcon.text-lg
 
-  .flex.flex-col.bg-light-700.mt-12.dark-bg-dark-500(v-if="f?.layout!='pure'")
+  .flex.flex-col.bg-light-700.mt-12.dark-bg-dark-500(v-if="f?.layout != 'pure'")
     .flex.items-center.gap-4.p-4
       a.flex.items-center.gap-4.items-start(href="/")
         img.w-10(src="/logo.svg")
@@ -73,7 +73,7 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
       a.p-1.opacity-40.hover-opacity-80.transition(
         v-for="doc in docs" :key="doc"
         :href="`/docs/${doc.slug}/`"
-        :class="{'font-bold': route.path == `/docs/${doc.slug}/`}"
+        :class="{ 'font-bold': route.path == `/docs/${doc.slug}/` }"
         ) {{ doc.title }}
 </template>
 
