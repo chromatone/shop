@@ -16,8 +16,8 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
 </script>
 
 <template lang="pug">
-.flex.flex-col.bg-light-500.dark-bg-dark-100.dark-text-light-500.min-h-100dvh.site.gap-0.items-stretch
-  .sticky.top-2.z-20.flex.items-center.gap-2.py-2.px-4.dark-bg-dark-300.dark-bg-op-40.bg-light-300.m-2.rounded-xl.shadow.bg-op-80.backdrop-blur-lg
+.flex.flex-col.min-h-100dvh.site.gap-0.items-stretch.bg-cover.dark-text-light-400.bg-stone-300.dark-bg-dark-500
+  .mx-2.max-w-75ch.w-full.mx-auto.sticky.top-2.z-20.flex.items-center.gap-2.py-2.px-4.dark-bg-dark-300.dark-bg-op-40.bg-light-300.m-2.rounded-xl.shadow.bg-op-80.backdrop-blur-lg
     a.opacity-60.hover-opacity-100.transition(href="/") shop
     a.p-0.opacity-40.hover-opacity-100.transition(href="https://chromatone.center" target="_blank") chromatone.center
     .cursor-pointer.mt-2px.opacity-30.hover-opacity-80(@click="isDark = !isDark")
@@ -32,8 +32,8 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
       .text-md YOUR CART
       ShopCartIcon.text-lg
 
-  .w-full.flex.flex-col.items-start
-    .flex.items-center.gap-4.mt-6.mb-6
+  .max-w-75ch.mx-auto.w-full.flex.flex-col.items-start
+    .flex.items-center.gap-4.mt-6.mb-6.w-full
       a(href="/") 
         img.w-20.sm-w-30.ml-4(src="/logo.svg")
       .flex.flex-col.gap-2
@@ -42,11 +42,11 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
           a.text-md.opacity-40(:href="`/${f?.category?.slug || f?.page_type}/`") {{ f?.category?.title || f?.page_type }}
         .text-3xl {{ f.title }}
 
-    .rounded-xl.p-6.text-18px.bg-light-200.dark-bg-dark-300.shadow-sm.mx-4.max-w-150(
+    .rounded-xl.p-6.text-18px.bg-light-200.dark-bg-dark-300.shadow-sm.mx-4(
       v-if="f?.description"
-    ) {{ f.description }}
+      ) {{ f.description }}
 
-    .w-full.flex.flex-col.markdown-body.mt-8.px-4.text-lg.mb-12
+    .w-full.flex.flex-col.markdown-body.px-4.text-lg.my-4
       content
 
     a.mx-auto.flex.flex-wrap.items-center.gap-3.transition.shadow-xl.rounded-xl.p-2.bg-stone-700.dark-bg-light-800.dark-text-dark.text-light(
@@ -57,7 +57,10 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
       .text-xl PROCEED TO CART
       ShopCartIcon.text-lg
 
-  .flex.flex-col.bg-light-700.mt-12.dark-bg-dark-500(v-if="f?.layout != 'pure'")
+  .max-w-75ch.mx-auto.flex.flex-col.bg-light-700.mt-12.dark-bg-dark-500.rounded-xl.overflow-hidden.m-4(v-if="f?.layout != 'pure'")
+
+    category-list-small.m-4
+
     .flex.items-center.gap-4.p-4
       a.flex.items-center.gap-4.items-start(href="/")
         img.w-10(src="/logo.svg")
@@ -67,17 +70,27 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
       .flex-1
       a.opacity-30.hover-opacity-80.text-sm(href="mailto:support@chromatone.center") Contact Us
 
-    category-list-small.w-full
-
-    .flex.flex-wrap.gap-2.text-md.justify-start.flex-1.bg-light-900.p-4.dark-bg-dark-900
-      a.p-1.opacity-40.hover-opacity-80.transition(
-        v-for="doc in docs" :key="doc"
-        :href="`/docs/${doc.slug}/`"
-        :class="{ 'font-bold': route.path == `/docs/${doc.slug}/` }"
-        ) {{ doc.title }}
+  .flex.flex-wrap.gap-2.text-md.justify-center.flex-1.bg-light-900.p-4.dark-bg-dark-900
+    a.p-1.opacity-40.hover-opacity-80.transition(
+      v-for="doc in docs" :key="doc"
+      :href="`/docs/${doc.slug}/`"
+      :class="{ 'font-bold': route.path == `/docs/${doc.slug}/` }"
+      ) {{ doc.title }}
 </template>
 
 <style lang="postcss">
+html {
+  overscroll-behavior-y: none
+}
+
+.info.custom-block {
+  @apply bg-stone-200 dark-bg-stone-800 rounded-xl shadow p-4 my-4;
+
+  & .custom-block-title {
+    @apply text-3xl
+  }
+}
+
 .markdown-body {
   p {
     @apply max-w-140 my-4

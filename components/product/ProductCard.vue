@@ -23,24 +23,26 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-.overflow-hidden.flex.flex-wrap.shadow.hover-shadow-lg.transition.flex-1.dark-bg-dark-300.bg-light-400.rounded-2x.p-2.border-2px.max-w-4xl.items-stretch(
+.overflow-hidden.flex.flex-wrap.shadow.hover-shadow-lg.transition.flex-1.dark-bg-dark-300.bg-stone-200.bg-op-90.backdrop-blur.max-w-4xl.items-stretch.rounded-2xl(
   :href="`/${category?.slug}/${slug}/`" 
   )
-  a.flex-auto.flex.flex-col.items-start(
+  a.flex-auto.flex.flex-col(
     style="flex: 1 1 50%"
     :href="`/${category?.slug}/${slug}/`")
 
-    .p-0.min-w-50.max-h-90.relative.overflow-hidden.rounded-xl
-      img(
-        style="margin:0"
-        :src="`/products/${slug}.webp`")
-  .flex.flex-col.p-4.gap-2(style="flex: 1 1 300px")
-    a.flex.flex-col.gap-2(:href="`/${category?.slug}/${slug}/`")
+    .min-w-50.max-h-120.min-h-70.relative.overflow-hidden.bg-cover.bg-center.h-full.w-full(
+      :style="{ backgroundImage: `url(/products/${slug}.webp)` }"
+      )
+      //- img(
+      //-   style="margin:0"
+      //-   :src="`/products/${slug}.webp`")
+  .flex.flex-col.gap-2(style="flex: 1 1 300px")
+    a.flex.flex-col.gap-4.p-4(:href="`/${category?.slug}/${slug}/`")
       .text-2xl.items-center.gap-2 {{ title }}
       .text-md.leading-normal {{ description }}
       slot 
     .flex-1
-    shop-price.w-full(
+    shop-price.m-1(
       :style="{ backgroundColor: `oklch(${isDark ? 60 : 92}% .04 ${sort * 360 / data?.products.length} / .2)` }"
       v-bind="props"
       :color="`oklch(${isDark ? 60 : 82}% .12 ${sort * 360 / data?.products.length})`"

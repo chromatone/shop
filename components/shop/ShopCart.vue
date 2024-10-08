@@ -5,9 +5,9 @@ const { isDark } = useData()
 </script>
 
 <template lang="pug">
-.flex.flex-col.tabular-nums.max-w-150.sticky.bottom-0.bg-light-400.dark-bg-dark-200.w-full.items-stretch(v-if="cart && Object.keys(cart).length > 0")
+.flex.flex-col.tabular-nums.sticky.bottom-0.bg-light-400.dark-bg-dark-200.w-full.items-stretch.rounded-xl.overflow-hidden(v-if="cart && Object.keys(cart).length > 0")
 
-	table.text-left.m-0.mb-4.w-full.rounded-xl.overflow-hidden
+	table.text-left.m-0.mb-4.w-full
 		thead
 			tr.text-md.sticky.top-0.z-20.font-bold
 				td Items in your cart

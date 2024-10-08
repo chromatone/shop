@@ -12,9 +12,9 @@ const { isDark } = useData()
     v-bind="category", 
     :style="{ borderColor: `oklch(${isDark ? 60 : 92}% .07 ${c * 360 / data?.categories.length})` }"
     )
-    a.flex.flex-col.relative.items-stretch.p-2.shadow.hover-shadow-lg.transition.rounded-2xl(
+    a.w-full.flex.flex-col.relative.items-stretch.p-2.shadow.hover-shadow-lg.transition.rounded-2xl.shadow.backdrop-blur(
       :href="`/${category?.slug}/`"
-      :style="{ backgroundColor: `oklch(${isDark ? 60 : 92}% .05 ${c * 360 / data?.categories.length} / .3)` }"
+      :style="{ backgroundColor: `oklch(${isDark ? 60 : 92}% .05 ${c * 360 / data?.categories.length} / .8)` }"
       )
 
       .text-4xl.p-4 {{ category?.title }}
@@ -23,9 +23,10 @@ const { isDark } = useData()
         .i-ri-download-cloud-fill(v-if="category?.digital")
         .i-mdi-email-newsletter(v-else)
 
-    .flex.flex-col.gap-4
+    .flex.flex-col.gap-6
       ProductCard(
-
-        v-for="product in [...category.products].sort((a, b) => a.sort > b.sort ? 1 : -1)", :key="product", v-bind="product"
+        v-for="product in [...category.products].sort((a, b) => a.sort > b.sort ? 1 : -1)", 
+        :key="product", 
+        v-bind="product"
         )
 </template>
