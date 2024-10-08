@@ -15,25 +15,26 @@ const { isDark } = useData()
 				td.text-center Quantity
 				td.text-center Total
 		tbody
-			tr(v-for="(pos, id, i) in cart" :key="id")
-				td.flex-1.text-left.flex.items-center.gap-2.border-l-10(
-					:style="{ borderColor: `oklch(${isDark ? 60 : 92}% .07 ${i * 360 / Object.keys(cart)?.length})` }"
-					)
-					img.max-w-14(:src="`/products/${pos.slug}.webp`")
-					a.cursor-pointer.no-underline.flex-auto(:href="`/${pos.category}/${pos.slug}/`" @click="open = false") {{ pos.title }}
-					.i-la-file-download.text-xl.w-20(
-						v-if="pos.digital"
+			transition-group(name="fade")
+				tr(v-for="(pos, id, i) in cart" :key="id")
+					td.flex-1.text-left.flex.items-center.gap-2.border-l-10(
+						:style="{ borderColor: `oklch(${isDark ? 60 : 92}% .07 ${i * 360 / Object.keys(cart)?.length})` }"
 						)
-				td.text-center ${{ pos.price }} 
-				td
-					.flex.justify-between.items-center
-						.flex.gap-2.items-center.flex-1.justify-center
-							button.q(@click="pos.quantity--")
-								.i-la-minus
-							.font-bold {{ pos.quantity }}
-							button.q(@click="pos.quantity++")
-								.i-la-plus
-				td.w-6ch.text-center.font-bold ${{ Number(pos.price) * Number(pos.quantity) }}
+						img.max-w-14(:src="`/products/${pos.slug}.webp`")
+						a.cursor-pointer.no-underline.flex-auto(:href="`/${pos.category}/${pos.slug}/`" @click="open = false") {{ pos.title }}
+						.i-la-file-download.text-xl.w-20(
+							v-if="pos.digital"
+							)
+					td.text-center ${{ pos.price }} 
+					td
+						.flex.justify-between.items-center
+							.flex.gap-2.items-center.flex-1.justify-center
+								button.q(@click="pos.quantity--")
+									.i-la-minus
+								.font-bold {{ pos.quantity }}
+								button.q(@click="pos.quantity++")
+									.i-la-plus
+					td.w-6ch.text-center.font-bold ${{ Number(pos.price) * Number(pos.quantity) }}
 
 
 			tr(:style="{ opacity: count > 1 ? 1 : .3 }" v-if="delivery.needed")
@@ -82,7 +83,7 @@ const { isDark } = useData()
 				.flex-0 PROCEED TO CHECKOUT 
 				.flex-1
 				.flex-0 ${{ total }}
-	.my-4.text-sm.opacity-40.px-4 Secure payment processing provided by <a class="font-bold" href="https://stripe.com" target="_blank">Stripe</a>.  <br> Please <a class="font-bold" href="mailto:support@chromatone.center">contact us</a> in case of any problems with checkout.
+	.my-4.text-sm.opacity-40.px-4 Secure payment processing provided by <a class="font-bold" href="https://stripe.com" target="_blank">Stripe</a>.  Please <a class="font-bold" href="mailto:support@chromatone.center">contact us</a> in case of any problems with checkout.
 
 </template>
 
