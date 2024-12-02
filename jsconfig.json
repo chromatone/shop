@@ -4,11 +4,6 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "#/*": [
-        "./*"
-      ]
-    },
     "jsx": "preserve",
     "esModuleInterop": true,
     "target": "esnext",
@@ -22,6 +17,9 @@
     "allowSyntheticDefaultImports": true,
   },
   "vueCompilerOptions": {
+    "vitePressExtensions": [
+      ".md"
+    ],
     "plugins": [
       "@vue/language-plugin-pug"
     ]
