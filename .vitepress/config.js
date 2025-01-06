@@ -11,7 +11,7 @@ import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-const dirname = path.dirname(fileURLToPath(import.meta.url));
+
 
 const meta = {
   title: "Chromatone shop",
@@ -96,7 +96,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        "#/": path.resolve(dirname, "../"),
+        "#/": path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../"),
       },
     },
     plugins: [
