@@ -5,9 +5,9 @@ node_modules/
 .vitepress/.temp
 .DS_Store
 .env
-src/public/categories
-src/public/products
+content/public/categories
+content/public/products
 dist
 stripe-hook.json
-src/ko-fi-hook.json
-src/store.md
+content/ko-fi-hook.json
+content/store.md

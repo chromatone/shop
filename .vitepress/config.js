@@ -1,41 +1,18 @@
-import { defineConfig } from "vitepress";
-import Unocss from "unocss/vite";
+import { defineConfig } from "vitepress"
+import Unocss from "unocss/vite"
 import {
   transformerDirectives,
   presetIcons,
   presetUno,
   extractorSplit,
 } from "unocss";
-import extractorPug from "@unocss/extractor-pug";
-import Components from 'unplugin-vue-components/vite'
-import AutoImport from 'unplugin-auto-import/vite'
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-
-const meta = {
-  title: "Chromatone shop",
-  description: "Stickers, posters and printable goods for Chromatone learning, teaching and practice",
-  site: "shop.chromatone.center",
-  url: "https://shop.chromatone.center/",
-  repo: "https://github.com/chromatone/shop.chromatone.center",
-  locale: "en",
-  icon: "logo.svg",
-  logo: "logo.svg",
-  image: "front.png",
-  color: '#cccccc',
-  twitter: "davay42",
-  author: "davay42",
-  tags: "stickers, memo, cheat-sheet, music theory stickers, music instrument stickers, colorful notes, visual music theory, buy posters, print on demand stickers, printable digital goods, colorized notes, colorful music theory, visual aid for learning, educational materials, music materials, colors",
-  umamiId: "540d0ad7-1cf7-48bc-b2f4-5607671c563c",
-  umamiScript: "https://stats.chromatone.center/script.js"
-};
+import extractorPug from "@unocss/extractor-pug"
 
 export default defineConfig({
-  srcDir: 'src',
+  srcDir: 'content',
   outDir: 'dist',
-  title: meta.title,
-  description: meta.description,
+  title: "Chromatone shop",
+  description: "Stickers, posters and printable goods for Chromatone learning, teaching and practice",
   lastUpdated: false,
   titleTemplate: 'Chromatone Shop',
   lang: "en-US",
@@ -43,31 +20,20 @@ export default defineConfig({
   sitemap: {
     hostname: 'https://shop.chromatone.center'
   },
-  themeConfig: {
-    logo: meta.logo,
-    lastUpdated: true,
-    socialLinks: [
-      { icon: "github", link: "https://github.com/chromatone/shop.chromatone.center" },
-    ],
-    nav: [
-      { text: 'Chromatone', link: 'https://chromatone.center' },
-      { text: 'Cart', link: '/cart/' },
-    ],
-  },
   head: [
-    ["link", { rel: "icon", href: `/${meta.icon}` }],
+    ["link", { rel: "icon", href: "/logo.svg" }],
     ["meta", { name: "referrer", content: "always" }],
     ["meta", { content: "website", property: "og:type" }],
     ["meta", { content: "yes", name: "apple-mobile-web-app-capable" }],
     ["meta", { content: "yes", name: "mobile-web-app-capable" }],
     ["meta", { content: "Synths online", name: "apple-mobile-web-app-title" }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-    ['meta', { name: 'twitter:site', content: `@${meta.author}` }],
-    ['meta', { name: 'twitter:creator', content: `@${meta.author}` }],
-    ["meta", { name: "theme-color", content: meta.color }],
-    ["meta", { name: "keywords", content: meta?.tags }],
-    ["meta", { name: "author", content: meta?.author }],
-    ["link", { rel: "icon", type: "image/svg+xml", href: meta.url + meta.icon }]
+    ['meta', { name: 'twitter:site', content: '@davay42' }],
+    ['meta', { name: 'twitter:creator', content: '@davay42' }],
+    ["meta", { name: "theme-color", content: '#cccccc' }],
+    ["meta", { name: "keywords", content: "stickers, memo, cheat-sheet, music theory stickers, music instrument stickers, colorful notes, visual music theory, buy posters, print on demand stickers, printable digital goods, colorized notes, colorful music theory, visual aid for learning, educational materials, music materials, colors" }],
+    ["meta", { name: "author", content: "davay42" }],
+    ["link", { rel: "icon", type: "image/svg+xml", href: "https://shop.chromatone.center/logo.svg" }]
   ],
   transformPageData(pageData) {
     if (pageData.frontmatter?.dynamic) {
@@ -77,54 +43,32 @@ export default defineConfig({
     }
   },
   transformHead({ pageData }) {
-    const url = pageData.relativePath.split('index.md')[0]
-    let image = meta.image
-    if (pageData.frontmatter.dynamic) {
-      image = pageData.frontmatter?.cover
+    const url = pageData.relativePath ? pageData.relativePath.split('index.md')[0] : '';
+    let image = 'https://shop.chromatone.center/front.png';
+    if (pageData.frontmatter?.dynamic && pageData.frontmatter?.cover) {
+      image = `https://db.chromatone.center/assets/${pageData.frontmatter?.cover}`;
     }
+    const pageTitle = (pageData.title || 'Store') + ' | Chromatone Shop';
+    const pageDescription = pageData.description || 'Stickers, posters and printable goods for Chromatone learning, teaching and practice';
+
     return [
-      process.env.NODE_ENV === "production" ? ["script", { async: true, defer: true, "data-website-id": meta.umamiId, src: meta.umamiScript }] : null,
-      ['meta', { property: 'og:title', content: pageData.title + ' | ' + meta.title }],
-      ['meta', { property: 'og:description', content: pageData.description }],
-      ['meta', { property: 'og:url', content: meta.url + url }],
+      process.env.NODE_ENV === "production" ? ["script", {
+        async: true,
+        defer: true,
+        "data-website-id": "540d0ad7-1cf7-48bc-b2f4-5607671c563c",
+        src: "https://stats.chromatone.center/script.js"
+      }] : null,
+      ['meta', { property: 'og:title', content: pageTitle }],
+      ['meta', { property: 'og:description', content: pageDescription }],
+      ['meta', { property: 'og:url', content: 'https://shop.chromatone.center/' + url }],
       ['meta', { property: 'og:image', content: image }],
       ['meta', { name: 'twitter:image', content: image }],
-      ['meta', { name: 'twitter:title', content: pageData.title + ' | ' + meta.title }],
-      ['meta', { name: 'twitter:description', content: pageData.description }],
-    ]
+      ['meta', { name: 'twitter:title', content: pageTitle }],
+      ['meta', { name: 'twitter:description', content: pageDescription }],
+    ].filter(Boolean); // Remove null values from the array
   },
   vite: {
-    resolve: {
-      alias: {
-        "#/": path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../"),
-      },
-    },
     plugins: [
-      AutoImport({
-        include: [
-          /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
-          /\.vue$/, /\.vue\?vue/, // .vue
-          /\.md$/, // .md
-        ],
-        imports: [
-          // presets
-          'vue',
-          'vitepress'
-        ],
-        dirs: [
-          './composables'
-        ]
-      }),
-      Components({
-        dirs: ['../components'],
-        extensions: ['vue'],
-        directoryAsNamespace: true,
-        collapseSamePrefixes: true,
-        globalNamespaces: ['global'],
-        include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-        exclude: [/node_modules/, /\.git/],
-
-      }),
       Unocss({
         transformers: [transformerDirectives()],
         presets: [

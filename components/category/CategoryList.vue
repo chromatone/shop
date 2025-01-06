@@ -1,4 +1,5 @@
 <script setup>
+import ProductCard from '../product/ProductCard.vue';
 import { data } from '../../db/shop.data'
 import { useData } from 'vitepress'
 const { isDark } = useData()

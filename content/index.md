@@ -3,10 +3,13 @@ title: Shop
 description: Visual Music Language tools for offline study and play
 ---
 
+<script setup>
+import CategoryList from '../components/category/CategoryList.vue'
+</script>
+
 <CategoryList/>
 
 ::: info Touch the Colors of Notes
-
 
 Experience music in a whole new way with Chromatone's innovative colored note system. Simply touch the color you want to hear and unleash the power of synesthesia, a unique way where your senses connect. Put stickers on different instruments and find same notes at various places easily. See the notes, feel the colors.
 

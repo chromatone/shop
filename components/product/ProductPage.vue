@@ -1,4 +1,7 @@
 <script setup>
+import { useData } from 'vitepress';
+import ShopPrice from '../shop/ShopPrice.vue';
+
 const { params, frontmatter: f } = useData()
 </script>
 
@@ -7,5 +10,5 @@ const { params, frontmatter: f } = useData()
   //- a.text-2xl.bg-light-900.dark-bg-dark-300.py-2.px-4.rounded(:href="`/${f.category.slug}/`") {{ f.category.title }}
   img(:src="`/products/${f.slug}.webp`")
   slot 
-  shop-price.sticky.bottom-4.left-4(    v-bind="f"    )
+  ShopPrice.sticky.bottom-4.left-4(    v-bind="f"    )
 </template>

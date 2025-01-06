@@ -4,6 +4,10 @@ title: Product
 ---
 
 <script setup>
+import ProductReviews from '../../../components/product/ProductReviews.vue'
+import ShopPrice from '../../../components/shop/ShopPrice.vue'
+import { useData } from 'vitepress'
+
 const { params, frontmatter: f } = useData()
 </script>
 

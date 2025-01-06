@@ -1,4 +1,5 @@
 <script setup>
+import { useData } from 'vitepress';
 import { cart, checkout, total, open, delivery, count } from '../../composables/cart'
 
 const { isDark } = useData()

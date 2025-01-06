@@ -1,6 +1,6 @@
 <script setup>
 import { createDirectus, readItem, rest, createItem, uploadFiles } from '@directus/sdk';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, reactive, ref } from 'vue';
 
 const props = defineProps({
   product: { type: String, default: '' },
@@ -72,14 +72,14 @@ const isValid = computed(() => form.author && form.content)
     .rounded.p-4.flex.gap-4.cursor-pointer.bg-light-900.dark-bg-dark-200.flex-auto(@click="open = !open")
       .p-0 Reviews ({{ reviews.length }})
       .flex-auto 
-      .p-0.flex.items-center.gap-2(v-if="reviews?.length>0")   {{ average.toFixed(1) }}
+      .p-0.flex.items-center.gap-2(v-if="reviews?.length > 0")   {{ average.toFixed(1) }}
         .i-la-star-solid.text-yellow-500.text-lg
       transition(name="fade" mode="out-in")
         .i-la-angle-down(v-if="!open")
         .i-la-angle-up(v-else)
-    button.p-4.bg-light-900.dark-bg-dark-200.rounded(@click="add=!add" title="Add a review" aria-label="Add a review")
+    button.p-4.bg-light-900.dark-bg-dark-200.rounded(@click="add = !add" title="Add a review" aria-label="Add a review")
       .i-la-plus(
-        :class="{'-rotate-45':add}"
+        :class="{ '-rotate-45': add }"
         )
   transition(name="fade")
     .p-4.bg-light-900.dark-bg-dark-200.max-w-140(v-if="added") Thank you! Your review has been submitted. It will be published after moderation.
@@ -91,7 +91,7 @@ const isValid = computed(() => form.author && form.content)
         .px-2 {{ form.rating }}
         .opacity-70.hover-opacity-100.gap-1.flex
           .p-0.text-yellow-500.cursor-pointer(v-for="s in 5" :key="s" @click="form.rating = s")
-            .i-la-star-solid(v-if="s<=form.rating")
+            .i-la-star-solid(v-if="s <= form.rating")
             .i-la-star(v-else)
       .flex.flex-wrap.gap-2
         .flex.flex-col.gap-2.flex-1
@@ -123,7 +123,7 @@ const isValid = computed(() => form.author && form.content)
       button.p-4.bg-light-500.shadow.rounded.dark-bg-dark-800(
         type="submit"  
         :disabled="!isValid"
-        :class="{'opacity-50':!isValid}"
+        :class="{ 'opacity-50': !isValid }"
         ) 
         .text-red-500(v-if="!isValid") Please fill in your name and add review content
         .p-0(v-else) Submit
@@ -131,7 +131,7 @@ const isValid = computed(() => form.author && form.content)
   transition(name="fade")
     .flex.flex-wrap.gap-4(v-show="open")
       .shadow.flex.flex-wrap.bg-light-400.dark-bg-dark-400.max-w-140(
-        :style="{flex: `${review.cover ? 1000 : 1} 1 280px`}"
+        :style="{ flex: `${review.cover ? 1000 : 1} 1 280px` }"
         v-for="review in reviews" :key="review"
         ) 
         .flex.flex-col.gap-4(
@@ -140,7 +140,7 @@ const isValid = computed(() => form.author && form.content)
           .p-4.flex-1.relative
             .flex.text-yellow-500.mb-2
               .i-la-star-solid(v-for="s in review.rating" :key="s")
-              .i-la-star(v-for="s in (5-review.rating)" :key="s")
+              .i-la-star(v-for="s in (5 - review.rating)" :key="s")
             .text-lg.mb-4.flex.items-center.gap-2
               .p-0 {{ review.author }}
               a.i-la-link(

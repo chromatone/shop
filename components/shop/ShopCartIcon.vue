@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue';
 import { cart } from '../../composables/cart'
 
 const props = defineProps({
@@ -19,6 +20,6 @@ const quantity = computed(() => {
 </script>
 
 <template lang="pug">
-.dark-bg-dark-900.bg-opacity-90.text-center.rounded-full.bg-dark-300.text-white.dark-bg-opacity-60.backdrop-blur-md.pb-2px.px-8px(v-if="quantity>0")
-	.p-0.font-bold {{quantity || '+'}}
+.dark-bg-dark-900.bg-opacity-90.text-center.rounded-full.bg-dark-300.text-white.dark-bg-opacity-60.backdrop-blur-md.pb-2px.px-8px(v-if="quantity > 0")
+	.p-0.font-bold {{ quantity || '+' }}
 </template>

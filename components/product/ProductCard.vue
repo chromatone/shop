@@ -3,6 +3,7 @@ import { data } from '../../db/shop.data'
 
 import { cart, addToCart } from '../../composables/cart'
 import { useData } from 'vitepress';
+import ShopPrice from '../shop/ShopPrice.vue';
 
 const { isDark } = useData()
 
@@ -42,7 +43,7 @@ const props = defineProps({
       .text-md.leading-normal {{ description }}
       slot 
     .flex-1
-    shop-price.m-1(
+    ShopPrice.m-1(
       :style="{ backgroundColor: `oklch(${isDark ? 60 : 92}% .04 ${sort * 360 / data?.products.length} / .2)` }"
       v-bind="props"
       :color="`oklch(${isDark ? 60 : 82}% .12 ${sort * 360 / data?.products.length})`"

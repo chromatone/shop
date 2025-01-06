@@ -1,5 +1,5 @@
 <script setup>
-import { data } from '../db/shop.data'
+import { data } from '../../db/shop.data'
 
 const { docs } = data
 </script>

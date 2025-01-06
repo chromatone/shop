@@ -2,6 +2,8 @@
 import { cart, addToCart } from '../../composables/cart'
 import { useRoute, useData, useRouter } from 'vitepress';
 import { data } from '../../db/shop.data'
+import ShopCartIcon from './ShopCartIcon.vue';
+import { computed } from 'vue';
 
 const props = defineProps({
   title: { type: String, default: '' },
@@ -49,6 +51,6 @@ const backgroundColor = computed(() => props.color || `oklch(${isDark.value ? 60
       template(v-else)
         .i-la-check.text-2xl
         .p-0.uppercase.flex-auto In Your Cart
-        shop-cart-icon(:id="stripe_id")
+        ShopCartIcon(:id="stripe_id")
       
 </template>

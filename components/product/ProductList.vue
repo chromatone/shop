@@ -1,5 +1,8 @@
 <script setup>
+import { useData } from 'vitepress';
 import { data } from '../../db/shop.data'
+import ProductCard from './ProductCard.vue';
+import { computed } from 'vue';
 
 const { params, frontmatter: f } = useData()
 const category = computed(() => data.categories.find((cat) => cat.slug == params.value.slug))

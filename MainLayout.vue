@@ -2,9 +2,12 @@
 import '@unocss/reset/tailwind.css'
 import 'uno.css'
 
-import { data } from '../db/shop.data'
-import { count } from '../composables/cart'
+import { data } from './db/shop.data'
+import { count } from './composables/cart'
 import { computed } from 'vue';
+import ShopCartIcon from './components/shop/ShopCartIcon.vue';
+import CategoryListSmall from './components/category/CategoryListSmall.vue';
+import { useData, useRoute } from 'vitepress';
 const { docs } = data
 
 const { isDark, frontmatter: f } = useData()
@@ -59,7 +62,7 @@ const pageColor = computed(() => `oklch(${isDark.value ? 60 : 92}% .07 ${((f.val
 
   .max-w-75ch.mx-auto.flex.flex-col.bg-light-700.mt-12.dark-bg-dark-500.rounded-xl.overflow-hidden.m-4(v-if="f?.layout != 'pure'")
 
-    category-list-small.m-4
+    CategoryListSmall.m-4
 
     .flex.items-center.gap-4.p-4
       a.flex.items-center.gap-4.items-start(href="/")

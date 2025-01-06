@@ -12,7 +12,7 @@
 	"engines": {
 		"node": "20.x"
 	},
-	"packageManager": "pnpm@9.14.4",
+	"packageManager": "pnpm@9.15.3",
 	"keywords": [
 		"shop",
 		"directus",
@@ -21,10 +21,10 @@
 	"author": "davay42",
 	"license": "MIT",
 	"dependencies": {
-		"@stripe/stripe-js": "^5.2.0",
-		"@unocss/reset": "^0.65.0",
-		"@vueuse/core": "^12.0.0",
-		"@vueuse/math": "^12.0.0",
+		"@stripe/stripe-js": "^5.4.0",
+		"@unocss/reset": "^0.65.3",
+		"@vueuse/core": "^12.3.0",
+		"@vueuse/math": "^12.3.0",
 		"colord": "^2.9.3",
 		"jspdf": "^2.5.2",
 		"svg2pdf.js": "^2.2.4",
@@ -32,14 +32,12 @@
 		"vue": "^3.5.13"
 	},
 	"devDependencies": {
-		"@directus/sdk": "^18.0.0",
-		"@unocss/extractor-pug": "^0.65.0",
-		"@vue/language-plugin-pug": "^2.1.10",
+		"@directus/sdk": "^18.0.3",
+		"@unocss/extractor-pug": "^0.65.3",
+		"@vue/language-plugin-pug": "^2.2.0",
 		"image-downloader": "^4.3.0",
 		"pug": "^3.0.3",
-		"unocss": "^0.65.0",
-		"unplugin-auto-import": "^0.18.6",
-		"unplugin-vue-components": "^0.27.5",
-		"vitepress": "1.2.0"
+		"unocss": "^0.65.3",
+		"vitepress": "1.5.0"
 	}
 }
