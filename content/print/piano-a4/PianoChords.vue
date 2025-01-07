@@ -1,8 +1,8 @@
 <script setup>
+import { notes } from '../print';
 import PrintKeys from '../PrintKeys.vue'
 import { reactive } from 'vue';
 
-const notes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
 
 const box = reactive({
   width: 210,

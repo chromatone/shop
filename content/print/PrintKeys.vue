@@ -2,22 +2,8 @@
 
 import { colord } from 'colord'
 import { reactive, computed } from 'vue'
-import { ChordType, ScaleType } from 'tonal'
-
-const notes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
-
-const flats = ['Bbb', 'Bb', 'Cb', 'Dbb', 'Db', 'Ebb', 'Eb', 'Fb', 'Gbb', 'Gb', 'Abb', 'Ab']
-
-function rotateArray(arr, count = 1) {
-  return [...arr.slice(count, arr.length), ...arr.slice(0, count)]
-}
-
-function pitchColor(pitch = 0, octave = 0, velocity = 1, alpha = 1) {
-  if (octave === undefined) {
-    octave = Math.floor(pitch / 12) + 4
-  }
-  return `hsla(${(pitch % 12) * 30},${velocity * 100}%,${Math.abs(octave + 2) * 8}%,${alpha})`
-}
+import { ChordType } from 'tonal'
+import { notes, flats, rotateArray, pitchColor } from './print'
 
 const props = defineProps({
   chroma: { type: String, default: '100000000000' },
@@ -38,7 +24,7 @@ const keys = reactive({
   chroma: computed(() => rotateArray(props.chroma.split(''), -props.pitch)),
   title: computed(() => {
     if (!ChordType.get(props.chroma)?.empty) return ChordType.get(props.chroma).aliases[0]
-    if (!ScaleType.get(props.chroma)?.empty) return ScaleType.get(props.chroma).aliases[0]
+    // if (!ScaleType.get(props.chroma)?.empty) return ScaleType.get(props.chroma).aliases[0]
     else return ''
   })
 });
@@ -53,8 +39,8 @@ function isInScale(note) {
 
 function keyColor(key, off) {
   if (key == null) return 'transparent'
-  if (key == props.pitch) return colord(pitchColor(key, 5)).toHex()
-  if (isInChroma(key) && !off) return colord(pitchColor(key, 5)).toHex()
+  if (key == props.pitch) return pitchColor(key)
+  if (isInChroma(key) && !off) return colord(pitchColor(key)).lighten(0.1).toHex()
 
   return notes[key].length != 2 ? '#fff' : '#999'
 }
@@ -87,7 +73,7 @@ svg.w-full.mt-2#chroma-keys(
     width="620" 
     height="40" 
     rx="20"
-    :fill="colord(pitchColor(pitch, 5, 2, 1)).toHex()")
+    :fill="colord(pitchColor(pitch)).toHex()")
 
   text(
     font-weight="thin"
@@ -122,7 +108,7 @@ svg.w-full.mt-2#chroma-keys(
         v-show="isInChroma(key)"
         y="250"
         x="45"
-        :fill="colord(pitchColor(key, 5)).isDark() ? 'white' : 'black'"
+        :fill="colord(pitchColor(key)).isDark() ? 'white' : 'black'"
         ) 
         tspan(    
 
@@ -149,11 +135,11 @@ svg.w-full.mt-2#chroma-keys(
         r="40"
         :fill="keyColor(key)"
         stroke-width="8"
-        :stroke="isInScale(key) ? pitchColor(key, 3) : 'transparent'"
+        :stroke="isInScale(key) ? pitchColor(key) : 'transparent'"
         )
       text.pointer-events-none(
         v-show="isInChroma(key)"
-        :fill="colord(pitchColor(key, 5)).brightness() < 0.5 ? 'white' : 'black'"
+        :fill="colord(pitchColor(key)).brightness() < 0.5 ? 'white' : 'black'"
         ) 
         tspan(y="165" x="42") {{ notes[key] }}
         tspan(y="50" x="42" ) {{ flats[key] }}

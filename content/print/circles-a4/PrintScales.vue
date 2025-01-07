@@ -1,10 +1,10 @@
 <script setup>
+import { notes } from '../print';
 import PrintKeys from '../PrintKeys.vue'
 import ChordCircle from './ChordCircle.vue';
 
 import { reactive } from 'vue';
 
-const notes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
 
 const box = reactive({
   width: 210,
@@ -47,6 +47,7 @@ svg#diatonic.m-8.select-none(
   text-anchor="middle",
   dominant-baseline="middle"
   )
+
   rect(
     x="-2"
     :y="- box.head"
@@ -54,8 +55,8 @@ svg#diatonic.m-8.select-none(
     :height="box.height + box.head"
     stroke="none"
     stroke-width="0.2"
-    rx="4"
-    fill="none"
+    rx="2"
+    fill="white"
     )
   g(
     font-size="4" 
