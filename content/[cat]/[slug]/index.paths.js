@@ -6,7 +6,7 @@ export default {
     const products = await useItems('products', {
       sort: ['sort'],
       fields: [
-        '*',
+        '*', 'images.directus_files_id',
         {
           category: [
             'slug', 'title',

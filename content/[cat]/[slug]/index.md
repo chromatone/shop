@@ -15,6 +15,12 @@ const { params, frontmatter: f } = useData()
 
 <!-- @content -->
 
+<article class=" w-full flex flex-wrap items-start gap-4" v-if="f?.images.length">
+<div v-for="{directus_files_id} in f?.images" :key="img" style="flex: 1 1 220px">
+  <img class="rounded-xl shadow-xl" :src="`https://db.chromatone.center/assets/${directus_files_id}?width=400`" alt="Product image" />
+</div>
+</article>
+
 <product-reviews :product="f.id"></product-reviews>
 
 <shop-price class="mr-auto sticky bottom-0 shadow-2xl" v-bind="f" ></shop-price>
