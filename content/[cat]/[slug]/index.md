@@ -23,4 +23,4 @@ const { params, frontmatter: f } = useData()
 
 <product-reviews :product="f.id"></product-reviews>
 
-<shop-price class="mr-auto sticky bottom-0 shadow-2xl" v-bind="f" ></shop-price>
+<shop-price class="mx-2 sticky bottom-4 shadow-2xl" v-bind="f" ></shop-price>

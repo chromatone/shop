@@ -6,9 +6,9 @@ const { isDark } = useData()
 </script>
 
 <template lang="pug">
-.flex.flex-col.tabular-nums.sticky.bottom-0.bg-light-400.dark-bg-dark-200.w-full.items-stretch.rounded-xl.overflow-hidden(v-if="cart && Object.keys(cart).length > 0")
+.flex.flex-col.tabular-nums.bg-light-400.dark-bg-dark-200.w-full.items-stretch.rounded-xl.overflow-x-scroll(v-if="cart && Object.keys(cart).length > 0")
 
-	table.text-left.m-0.mb-4.w-full
+	table.text-left.m-0.mb-4.w-full.overflow-x-scroll
 		thead
 			tr.text-md.sticky.top-0.z-20.font-bold
 				td Items in your cart
@@ -18,24 +18,28 @@ const { isDark } = useData()
 		tbody
 			transition-group(name="fade")
 				tr(v-for="(pos, id, i) in cart" :key="id")
-					td.flex-1.text-left.flex.items-center.gap-2.border-l-10(
-						:style="{ borderColor: `oklch(${isDark ? 60 : 92}% .07 ${i * 360 / Object.keys(cart)?.length})` }"
+					td.flex-1.text-left.flex.items-center.gap-2(
+
 						)
+
 						img.max-w-14(:src="`/products/${pos.slug}.webp`")
-						a.cursor-pointer.no-underline.flex-auto(:href="`/${pos.category}/${pos.slug}/`" @click="open = false") {{ pos.title }}
+
+						a.cursor-pointer.no-underline.flex-auto(:href="`/${pos.category}/${pos.slug}/`" @click="open = false"
+						) {{ pos.title }}
+
 						.i-la-file-download.text-xl.w-20(
 							v-if="pos.digital"
 							)
 					td.text-center ${{ pos.price }} 
 					td
 						.flex.justify-between.items-center
-							.flex.gap-2.items-center.flex-1.justify-center
+							.flex.gap-1.items-center.flex-1.justify-center
 								button.q(@click="pos.quantity--")
 									.i-la-minus
 								.font-bold {{ pos.quantity }}
 								button.q(@click="pos.quantity++")
 									.i-la-plus
-					td.w-6ch.text-center.font-bold ${{ Number(pos.price) * Number(pos.quantity) }}
+					td.w-6ch.text-center ${{ Number(pos.price) * Number(pos.quantity) }}
 
 
 			tr(:style="{ opacity: count > 1 ? 1 : .3 }" v-if="delivery.needed")
@@ -50,7 +54,7 @@ const { isDark } = useData()
 						img.h-8(src="/logo.svg")
 
 			tr(v-if="delivery.needed")
-				td.font-bold 
+				td
 					.flex.gap-2.items-center
 						.i-ph-envelope.text-xl
 						p Worldwide delivery 
@@ -67,24 +71,26 @@ const { isDark } = useData()
 									:value="name")
 								.price.text-lg ${{ way.price }}&nbsp;
 								.font-normal.text-left(:title="way.description") {{ way.title }} 
-				td.text-center.font-bold {{ delivery?.selected?.price > 0 ? `$${delivery?.selected?.price}` : 'FREE' }}
+				td.text-center {{ delivery?.selected?.price > 0 ? `$${delivery?.selected?.price}` : 'FREE' }}
 
 			tr(v-else)
 				td.p-2(colspan="4") All products in your cart are digital. We will send you the download link shortly.
 			tr.sticky.bottom-0
-				td.font-bold(colspan="2") Total
-				td.font-bold.text-center {{ count + (delivery.needed && count >= 2 ? 1 : 0) }} items
-				td.font-bold.text-center ${{ total }}
+				td(colspan="2") Total
+				td.text-center {{ count + (delivery.needed && count >= 2 ? 1 : 0) }} items
+				td.text-center ${{ total }}
 
-	.flex.gap-2.mt-2.p-2
-		button.flex.items-center.transition.font-bold.text-xl.flex-1.hover-shadow-lg.p-4.rounded-2xl.shadow.gap-4.bg-stone-700.text-light.dark-bg-stone-300.dark-text-dark.border-1.font-normal.hover-bg-stone-900.hover-dark-bg-light-400(
-			:style="{ backgroundcolor: `oklch(${isDark ? 60 : 80}% .17 ${130} / .8)` }"
-			@click="checkout()") 
-				.i-tabler-credit-card-pay
-				.flex-0 PROCEED TO CHECKOUT 
-				.flex-1
-				.flex-0 ${{ total }}
-	.my-4.text-sm.opacity-40.px-4 Secure payment processing provided by <a class="font-bold" href="https://stripe.com" target="_blank">Stripe</a>.  Please <a class="font-bold" href="mailto:support@chromatone.center">contact us</a> in case of any problems with checkout.
+.flex.gap-2.mt-2.p-2.sticky.bottom-2
+	button.flex.items-center.transition.text-lg.flex-1.hover-shadow-lg.p-4.rounded-2xl.shadow.gap-4.bg-stone-700.text-light.dark-bg-stone-300.dark-text-dark.border-1.font-normal.hover-bg-stone-900.hover-dark-bg-light-400(
+		:style="{ backgroundcolor: `oklch(${isDark ? 60 : 80}% .17 ${130} / .8)` }"
+		@click="checkout()") 
+			.i-la-lock.text-2xl
+			.flex-0 PROCEED TO CHECKOUT 
+			.flex-1
+			.flex-0 ${{ total }}
+.my-4.text-sm.opacity-40.px-4.flex.gap-2.items-center
+	.i-la-stripe.text-4xl
+	.p-0.flex-1 Secure payment processing provided by <a class="font-bold" href="https://stripe.com" target="_blank">Stripe</a>.  Please <a class="font-bold" href="mailto:support@chromatone.center">contact us</a> in case of any problems with checkout.
 
 </template>
 
@@ -114,12 +120,6 @@ tr:nth-child(2n+1) {
 }
 
 button.q {
-	@apply cursor-pointer text-sm bg-stone-500 text-light p-1 rounded-2xl hover-bg-stone-600 shadow hover-shadow-lg border-2px dark-hover-bg-dark-900;
-}
-</style>
-
-<style>
-.v-popper__popper {
-	max-width: 20em;
+	@apply cursor-pointer text-sm bg-light-200 bg-op-40 dark-text-light p-1px rounded-2xl hover-bg-light-50 shadow hover-shadow-lg border-2px dark-hover-bg-dark-900 dark-bg-dark-300 dark-border-light-900 dark-border-op-10;
 }
 </style>

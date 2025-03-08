@@ -24,9 +24,7 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-.overflow-hidden.flex.flex-wrap.shadow.hover-shadow-lg.transition.flex-1.dark-bg-dark-300.bg-stone-200.bg-op-90.backdrop-blur.max-w-4xl.items-stretch.rounded-2xl(
-  :href="`/${category?.slug}/${slug}/`" 
-  )
+.overflow-hidden.flex.flex-wrap.shadow.hover-shadow-lg.transition.dark-bg-dark-300.bg-stone-200.bg-op-90.backdrop-blur.items-stretch.rounded-2xl
   a.flex-auto.flex.flex-col(
     style="flex: 1 1 50%"
     :href="`/${category?.slug}/${slug}/`")

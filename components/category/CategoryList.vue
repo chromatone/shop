@@ -7,7 +7,7 @@ const { isDark } = useData()
 
 <template lang='pug'>
 .flex.flex-col.gap-16
-  .flex.flex-col.relative.flex-1.items-start.gap-4(
+  .flex.flex-col.relative.flex-1.items-start.gap-8(
     v-for="(category, c, t) in data?.categories", 
     :key="category", 
     v-bind="category", 
@@ -24,7 +24,7 @@ const { isDark } = useData()
         .i-ri-download-cloud-fill(v-if="category?.digital")
         .i-mdi-email-newsletter(v-else)
 
-    .flex.flex-col.gap-6
+    .flex.flex-col.gap-6.w-full
       ProductCard(
         v-for="product in [...category.products].sort((a, b) => a.sort > b.sort ? 1 : -1)", 
         :key="product", 
