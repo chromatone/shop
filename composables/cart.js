@@ -13,7 +13,7 @@ const stripeKey = 'pk_live_51M1WfLBJnUXQERocrGtVUDvfIdzMmecoAClLVFLSi2VG2cNF2kS6
 const MaxQuantity = 5
 
 export const cartInitilized = ref(false)
-export const open = ref(true)
+export const open = ref(false)
 export const cart = useStorage('shopping-cart', {})
 
 
